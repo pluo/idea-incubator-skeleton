@@ -27,8 +27,3 @@ Explain why this option was chosen.
 
 - Consequence one
 - Consequence two
-
-## Links
-
-- Supersedes:
-- Superseded by:

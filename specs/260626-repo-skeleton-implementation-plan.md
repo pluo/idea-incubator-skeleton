@@ -230,6 +230,14 @@ confused with real historical records. Historical project notes inside `ideas/`,
 Decision records are the exception: use ordered numeric prefixes such as `001-`,
 `002-`, and `003-`.
 
+In YAML frontmatter, `description` is not the title. The Markdown H1 is the
+title. Keep `description` to 20 words or fewer and use it to summarize what the
+document is.
+
+In decision notes, include a `## Links` section only when there are real
+relationships to record. If present, include only non-empty relationship bullets
+such as `Supersedes:` or `Superseded by:`.
+
 ## Private Workspace Rules
 
 - `private/` is never committed.
@@ -397,7 +405,10 @@ Use these Markdown filename conventions for historical records:
 - `research/YYMMDD-short-slug.md`
 
 Prefer creating a newer dated record or linking to current docs instead of
-heavily rewriting old historical notes.
+heavily rewriting old historical notes. For decisions, prefer creating the next
+numbered record such as `002-short-slug.md` instead of renumbering old records.
+Include decision relationship links only when a real supersedes or superseded-by
+relationship exists.
 ````
 
 - [ ] **Step 3: Create public provenance documentation**
@@ -479,8 +490,9 @@ Create `repo-skeleton/docs/current-feature-doc-template.md` with this content:
 
 ```markdown
 ---
-title: Current Feature Documentation
-status: current
+description: Template for current documentation that explains project behavior, workflow, or architecture.
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 ---
 
 # Current Feature Documentation
@@ -507,8 +519,8 @@ Create `repo-skeleton/ideas/YYMMDD-idea-template.md` with this content:
 
 ```markdown
 ---
-date: YYMMDD
-status: draft
+description: Template for public-safe idea notes capturing intuition, context, directions, and open questions.
+created: YYYY-MM-DD
 ---
 
 # Idea: Short Title
@@ -539,10 +551,10 @@ Create `repo-skeleton/sessions/YYMMDD-topic-session-template.md` with this conte
 
 ```markdown
 ---
-date: YYMMDD
-topic: short-topic
+description: Template for public AI session summaries capturing context, decisions, tradeoffs, and next steps.
+created: YYYY-MM-DD
 agent:
-visibility: public
+model:
 ---
 
 # Public Session: Short Title
@@ -593,11 +605,10 @@ Create `repo-skeleton/sessions/YYMMDD-topic-private-session-template.md` with th
 
 ```markdown
 ---
-date: YYMMDD
-topic: short-topic
+description: Template for private AI session notes kept outside public Git history.
+created: YYYY-MM-DD
 agent:
-visibility: private
-intended_path: private/YYMMDD-topic-private-session.md
+model:
 ---
 
 # Private Session: Short Title
@@ -646,8 +657,8 @@ Create `repo-skeleton/decisions/000-decision-template.md` with this content:
 
 ```markdown
 ---
-date: YYMMDD
-status: active
+description: Template for decision records capturing context, options, rationale, and consequences.
+created: YYYY-MM-DD
 ---
 
 # Decision: Short Title
@@ -674,11 +685,6 @@ Explain why this option was chosen.
 
 - Consequence one
 - Consequence two
-
-## Links
-
-- Supersedes:
-- Superseded by:
 ```
 
 - [ ] **Step 6: Create design spec template**
@@ -687,8 +693,8 @@ Create `repo-skeleton/specs/YYMMDD-feature-design-template.md` with this content
 
 ```markdown
 ---
-date: YYMMDD
-status: draft
+description: Template for dated design specs and implementation plans.
+created: YYYY-MM-DD
 ---
 
 # Feature Design: Short Title
@@ -731,8 +737,8 @@ Create `repo-skeleton/research/YYMMDD-research-template.md` with this content:
 
 ```markdown
 ---
-date: YYMMDD
-status: draft
+description: Template for research notes capturing questions, findings, implications, and follow-ups.
+created: YYYY-MM-DD
 ---
 
 # Research: Short Title

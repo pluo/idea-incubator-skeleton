@@ -242,11 +242,16 @@ where future notes will live:
   template for private notes that should be copied into ignored `private/`
   before use.
 - `decisions/000-decision-template.md`: decision, context, options
-  considered, rationale, consequences, supersedes, and superseded-by links.
+  considered, rationale, consequences, and optional non-empty relationship
+  links.
 - `specs/YYMMDD-feature-design-template.md`: goal, context, scope, non-goals,
   design, acceptance criteria, and implementation notes.
 - `research/YYMMDD-research-template.md`: question, observations, findings,
   implications, and follow-ups.
+
+Decision notes should include a `## Links` section only when there are real
+relationships to record, such as superseding or being superseded by another
+decision.
 
 Template filenames include `template` so they are not confused with real
 historical records. Actual dated notes should be created by copying a template,

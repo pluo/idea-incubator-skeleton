@@ -27,3 +27,5 @@ Use these Markdown filename conventions for historical records:
 Prefer creating a newer dated record or linking to current docs instead of
 heavily rewriting old historical notes. For decisions, prefer creating the next
 numbered record such as `002-short-slug.md` instead of renumbering old records.
+Include decision relationship links only when a real supersedes or superseded-by
+relationship exists.

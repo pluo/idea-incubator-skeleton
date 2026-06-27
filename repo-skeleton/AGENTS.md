@@ -42,6 +42,10 @@ In YAML frontmatter, `description` is not the title. The Markdown H1 is the
 title. Keep `description` to 20 words or fewer and use it to summarize what the
 document is.
 
+In decision notes, include a `## Links` section only when there are real
+relationships to record. If present, include only non-empty relationship bullets
+such as `Supersedes:` or `Superseded by:`.
+
 ## Private Workspace Rules
 
 - `private/` is never committed.
