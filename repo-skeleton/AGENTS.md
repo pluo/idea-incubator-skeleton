@@ -28,6 +28,9 @@ commit history may be published later.
 - `private/`: ignored local-only private workspace. It may be a real directory
   or a symlink to an external private store.
 
+Keep `.gitignore` configured to ignore `private` and `private/**`. Do not remove
+that rule when adapting this skeleton.
+
 In-place template files include `template` in the filename so they are not
 confused with real historical records. Historical project notes inside `ideas/`,
 `sessions/`, `decisions/`, `specs/`, `research/`, and `private/` use `YYMMDD-`

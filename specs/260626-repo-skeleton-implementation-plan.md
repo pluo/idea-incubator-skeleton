@@ -16,6 +16,7 @@ Create or modify these files in `/Users/peluo/repos/repo-skeleton-dev`:
 
 - Modify: `.gitignore` to explicitly ignore `repo-skeleton/private` as both a directory and a symlink.
 - Create: `README.md` to explain that this repository develops a copyable template directory.
+- Create: `repo-skeleton/.gitignore` so copied projects inherit the `private/` ignore rule.
 - Create: `repo-skeleton/AGENTS.md` as the canonical rules file for all agents.
 - Create: `repo-skeleton/CLAUDE.md` as a symlink to `AGENTS.md`.
 - Create: `repo-skeleton/README.md` as the public entry point copied into future projects.
@@ -31,6 +32,7 @@ Create or modify these files in `/Users/peluo/repos/repo-skeleton-dev`:
 **Files:**
 - Modify: `.gitignore`
 - Create: `README.md`
+- Create: `repo-skeleton/.gitignore`
 
 - [ ] **Step 1: Verify starting state**
 
@@ -100,6 +102,7 @@ repo-skeleton-dev/
   repo-skeleton/
     AGENTS.md
     CLAUDE.md -> AGENTS.md
+    .gitignore
     README.md
     docs/
     ideas/
@@ -115,17 +118,30 @@ current documentation and `specs/` contains dated specs and plans for future
 projects created from the skeleton.
 ````
 
-- [ ] **Step 4: Verify ignore behavior without creating private files**
+- [ ] **Step 4: Create the template ignore file**
+
+Create `repo-skeleton/.gitignore` with this content:
+
+```gitignore
+# Local private workspace; keep untracked even when it is a symlink
+private
+private/**
+```
+
+- [ ] **Step 5: Verify ignore behavior without creating private files**
 
 Run:
 
 ```bash
 git check-ignore -v repo-skeleton/private repo-skeleton/private/260626-private-session.md
+git -C repo-skeleton check-ignore -v private private/260626-private-session.md
 ```
 
-Expected output includes two matching lines from `.gitignore`, one for `repo-skeleton/private` and one for `repo-skeleton/private/260626-private-session.md`.
+Expected output includes matching lines from the outer `.gitignore` for
+`repo-skeleton/private` paths and matching lines from `repo-skeleton/.gitignore`
+for copied-template `private` paths.
 
-- [ ] **Step 5: Verify formatting**
+- [ ] **Step 6: Verify formatting**
 
 Run:
 
@@ -138,19 +154,20 @@ Expected:
 
 ```text
 git diff --check prints nothing.
-git status --short shows README.md and .gitignore changed or untracked.
+git status --short shows README.md, .gitignore, and repo-skeleton/.gitignore changed or untracked.
 ```
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 Run:
 
 ```bash
-git add README.md .gitignore
+git add README.md .gitignore repo-skeleton/.gitignore
 git commit -m "Document copyable skeleton usage"
 ```
 
-Expected: commit succeeds and includes only `README.md` and `.gitignore`.
+Expected: commit succeeds and includes only `README.md`, `.gitignore`, and
+`repo-skeleton/.gitignore`.
 
 ### Task 2: Agent Rules And Claude Compatibility
 
@@ -806,9 +823,11 @@ Run:
 
 ```bash
 git check-ignore -v repo-skeleton/private repo-skeleton/private/260626-private-session.md
+git -C repo-skeleton check-ignore -v private private/260626-private-session.md
 ```
 
-Expected output includes `.gitignore` matches for both paths.
+Expected output includes outer `.gitignore` matches for the `repo-skeleton/private`
+paths and `repo-skeleton/.gitignore` matches for copied-template `private` paths.
 
 - [ ] **Step 2: Verify Claude symlink**
 

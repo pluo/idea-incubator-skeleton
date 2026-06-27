@@ -32,6 +32,7 @@ repo-skeleton-dev/
   repo-skeleton/
     AGENTS.md
     CLAUDE.md -> AGENTS.md
+    .gitignore
     README.md
     docs/
     ideas/

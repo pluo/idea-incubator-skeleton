@@ -1,0 +1,3 @@
+# Local private workspace; keep untracked even when it is a symlink
+private
+private/**

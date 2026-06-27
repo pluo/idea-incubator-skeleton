@@ -62,6 +62,7 @@ Inside the copyable template:
 repo-skeleton/
   AGENTS.md
   CLAUDE.md -> AGENTS.md
+  .gitignore
   README.md
 
   docs/
@@ -81,6 +82,7 @@ The agreed template structure is:
 repo-skeleton/
   AGENTS.md
   CLAUDE.md
+  .gitignore
   README.md
 
   docs/
@@ -112,6 +114,9 @@ repo-skeleton/
 symlink to `AGENTS.md` so Claude Code and Codex share the same rules without
 drift.
 
+`.gitignore` inside the copyable template must ignore `private/` and its
+contents so copied projects inherit the private-workspace boundary directly.
+
 All notes, documentation, sessions, decisions, specs, research, and in-place
 templates inside the skeleton are Markdown files.
 
@@ -139,6 +144,10 @@ Current-state documentation belongs in `docs/` and does not use date prefixes.
 
 `private/` is a local-only workspace for private AI session notes and related
 working context. It must be ignored by Git.
+
+The copyable template includes its own `.gitignore` with `private` and
+`private/**` rules. The outer `repo-skeleton-dev` repository also ignores
+`repo-skeleton/private` so development of the template has the same guardrail.
 
 The private workspace may be:
 
