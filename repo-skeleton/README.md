@@ -10,7 +10,7 @@ decisions, and optional implementation.
 - Keep private AI session notes in ignored `private/`.
 - Create public AI session summaries in `sessions/` only when explicitly
   requested.
-- Record durable decisions in `decisions/`.
+- Record durable numbered decisions in `decisions/`.
 - Put dated specs and implementation plans in `specs/`.
 - Keep current project documentation in `docs/`.
 - Add implementation code under `src/` when the project reaches that stage.

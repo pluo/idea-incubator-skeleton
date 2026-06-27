@@ -98,7 +98,7 @@ repo-skeleton/
     YYMMDD-topic-private-session-template.md
 
   decisions/
-    YYMMDD-decision-template.md
+    000-decision-template.md
 
   specs/
     YYMMDD-feature-design-template.md
@@ -125,18 +125,23 @@ templates inside the skeleton are Markdown files.
 The skeleton is public-first because the exact Git repository may be published
 later. Therefore, anything committed to Git must be suitable for public history.
 
-Historical provenance folders use `YYMMDD-` filename prefixes:
+Historical provenance folders generally use `YYMMDD-` filename prefixes:
 
 - `ideas/`
 - `sessions/`
-- `decisions/`
 - `specs/`
 - `research/`
 - `private/`
 
+Decision records are the exception. They use ordered numeric prefixes such as
+`001-`, `002-`, and `003-`, with `000-decision-template.md` reserved as the
+template.
+
 The date prefix signals that these files are historical records. Agents and
 humans should prefer creating a newer dated note, superseding an older note, or
 cross-linking to updated context instead of heavily rewriting old provenance.
+For decisions, preserve history by appending the next numbered record instead of
+renumbering or heavily rewriting older decisions.
 
 Current-state documentation belongs in `docs/` and does not use date prefixes.
 
@@ -213,8 +218,8 @@ The intended roles are:
 - `private/` records richer private AI work and remains ignored.
 - `sessions/` records public-safe summaries of AI-assisted sessions when
   explicitly requested.
-- `decisions/` records durable decision points, especially when direction
-  changes.
+- `decisions/` records durable numbered decision points, especially when
+  direction changes.
 - `specs/` records dated design specs and implementation plans.
 - `docs/` records current, up-to-date project documentation.
 - `research/` records dated supporting investigation and findings.
@@ -236,7 +241,7 @@ where future notes will live:
 - `sessions/YYMMDD-topic-private-session-template.md`: tracked public-safe
   template for private notes that should be copied into ignored `private/`
   before use.
-- `decisions/YYMMDD-decision-template.md`: decision, context, options
+- `decisions/000-decision-template.md`: decision, context, options
   considered, rationale, consequences, supersedes, and superseded-by links.
 - `specs/YYMMDD-feature-design-template.md`: goal, context, scope, non-goals,
   design, acceptance criteria, and implementation notes.

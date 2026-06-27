@@ -16,13 +16,14 @@ folder do not need date prefixes because they describe the current state.
 
 ## Historical Records
 
-Use dated Markdown files for historical records:
+Use these Markdown filename conventions for historical records:
 
 - `ideas/YYMMDD-short-slug.md`
 - `sessions/YYMMDD-topic-session.md`
-- `decisions/YYMMDD-short-slug.md`
+- `decisions/001-short-slug.md`
 - `specs/YYMMDD-short-slug.md`
 - `research/YYMMDD-short-slug.md`
 
 Prefer creating a newer dated record or linking to current docs instead of
-heavily rewriting old historical notes.
+heavily rewriting old historical notes. For decisions, prefer creating the next
+numbered record such as `002-short-slug.md` instead of renumbering old records.

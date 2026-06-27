@@ -216,7 +216,8 @@ commit history may be published later.
 - `ideas/`: dated public-safe idea notes using `YYMMDD-short-slug.md`.
 - `sessions/`: dated public-safe AI session summaries using
   `YYMMDD-topic-session.md`, plus tracked in-place templates.
-- `decisions/`: dated decision records using `YYMMDD-short-slug.md`.
+- `decisions/`: numbered decision records using `001-short-slug.md`,
+  `002-short-slug.md`, and so on. `000-decision-template.md` is the template.
 - `specs/`: dated specs and implementation plans using `YYMMDD-short-slug.md`.
 - `research/`: dated research notes using `YYMMDD-short-slug.md`.
 - `src/`: optional implementation code when the project reaches that stage.
@@ -225,8 +226,9 @@ commit history may be published later.
 
 In-place template files include `template` in the filename so they are not
 confused with real historical records. Historical project notes inside `ideas/`,
-`sessions/`, `decisions/`, `specs/`, `research/`, and `private/` use `YYMMDD-`
-prefixes.
+`sessions/`, `specs/`, `research/`, and `private/` use `YYMMDD-` prefixes.
+Decision records are the exception: use ordered numeric prefixes such as `001-`,
+`002-`, and `003-`.
 
 ## Private Workspace Rules
 
@@ -342,7 +344,7 @@ decisions, and optional implementation.
 - Keep private AI session notes in ignored `private/`.
 - Create public AI session summaries in `sessions/` only when explicitly
   requested.
-- Record durable decisions in `decisions/`.
+- Record durable numbered decisions in `decisions/`.
 - Put dated specs and implementation plans in `specs/`.
 - Keep current project documentation in `docs/`.
 - Add implementation code under `src/` when the project reaches that stage.
@@ -386,11 +388,11 @@ folder do not need date prefixes because they describe the current state.
 
 ## Historical Records
 
-Use dated Markdown files for historical records:
+Use these Markdown filename conventions for historical records:
 
 - `ideas/YYMMDD-short-slug.md`
 - `sessions/YYMMDD-topic-session.md`
-- `decisions/YYMMDD-short-slug.md`
+- `decisions/001-short-slug.md`
 - `specs/YYMMDD-short-slug.md`
 - `research/YYMMDD-short-slug.md`
 
@@ -467,7 +469,7 @@ Expected: commit succeeds and includes only the template README and current docs
 - Create: `repo-skeleton/ideas/YYMMDD-idea-template.md`
 - Create: `repo-skeleton/sessions/YYMMDD-topic-session-template.md`
 - Create: `repo-skeleton/sessions/YYMMDD-topic-private-session-template.md`
-- Create: `repo-skeleton/decisions/YYMMDD-decision-template.md`
+- Create: `repo-skeleton/decisions/000-decision-template.md`
 - Create: `repo-skeleton/specs/YYMMDD-feature-design-template.md`
 - Create: `repo-skeleton/research/YYMMDD-research-template.md`
 
@@ -640,7 +642,7 @@ Summarize the useful reasoning and exploration.
 
 - [ ] **Step 5: Create decision template**
 
-Create `repo-skeleton/decisions/YYMMDD-decision-template.md` with this content:
+Create `repo-skeleton/decisions/000-decision-template.md` with this content:
 
 ```markdown
 ---
@@ -770,7 +772,7 @@ find repo-skeleton -path repo-skeleton/private -prune -o -type f -name '*templat
 Expected output:
 
 ```text
-repo-skeleton/decisions/YYMMDD-decision-template.md
+repo-skeleton/decisions/000-decision-template.md
 repo-skeleton/docs/current-feature-doc-template.md
 repo-skeleton/ideas/YYMMDD-idea-template.md
 repo-skeleton/research/YYMMDD-research-template.md
@@ -804,7 +806,7 @@ Expected: no output.
 Run:
 
 ```bash
-git add repo-skeleton/docs/current-feature-doc-template.md repo-skeleton/ideas/YYMMDD-idea-template.md repo-skeleton/sessions/YYMMDD-topic-session-template.md repo-skeleton/sessions/YYMMDD-topic-private-session-template.md repo-skeleton/decisions/YYMMDD-decision-template.md repo-skeleton/specs/YYMMDD-feature-design-template.md repo-skeleton/research/YYMMDD-research-template.md
+git add repo-skeleton/docs/current-feature-doc-template.md repo-skeleton/ideas/YYMMDD-idea-template.md repo-skeleton/sessions/YYMMDD-topic-session-template.md repo-skeleton/sessions/YYMMDD-topic-private-session-template.md repo-skeleton/decisions/000-decision-template.md repo-skeleton/specs/YYMMDD-feature-design-template.md repo-skeleton/research/YYMMDD-research-template.md
 git commit -m "Add in-place skeleton templates"
 ```
 

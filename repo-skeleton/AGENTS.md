@@ -21,7 +21,8 @@ commit history may be published later.
 - `ideas/`: dated public-safe idea notes using `YYMMDD-short-slug.md`.
 - `sessions/`: dated public-safe AI session summaries using
   `YYMMDD-topic-session.md`, plus tracked in-place templates.
-- `decisions/`: dated decision records using `YYMMDD-short-slug.md`.
+- `decisions/`: numbered decision records using `001-short-slug.md`,
+  `002-short-slug.md`, and so on. `000-decision-template.md` is the template.
 - `specs/`: dated specs and implementation plans using `YYMMDD-short-slug.md`.
 - `research/`: dated research notes using `YYMMDD-short-slug.md`.
 - `src/`: optional implementation code when the project reaches that stage.
@@ -33,8 +34,9 @@ that rule when adapting this skeleton.
 
 In-place template files include `template` in the filename so they are not
 confused with real historical records. Historical project notes inside `ideas/`,
-`sessions/`, `decisions/`, `specs/`, `research/`, and `private/` use `YYMMDD-`
-prefixes.
+`sessions/`, `specs/`, `research/`, and `private/` use `YYMMDD-` prefixes.
+Decision records are the exception: use ordered numeric prefixes such as `001-`,
+`002-`, and `003-`.
 
 In YAML frontmatter, `description` is not the title. The Markdown H1 is the
 title. Keep `description` to 20 words or fewer and use it to summarize what the
