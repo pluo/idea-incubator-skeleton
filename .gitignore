@@ -15,3 +15,7 @@
 !*.ts
 
 ## s3. then re-deny unwanted files that were allowed too loosely in s2
+
+# repo-skeleton local private workspace; keep untracked even when it is a symlink
+repo-skeleton/private
+repo-skeleton/private/**
