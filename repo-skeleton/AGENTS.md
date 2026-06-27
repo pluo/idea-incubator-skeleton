@@ -82,9 +82,14 @@ likely to change.
 - Public session notes are curated summaries, not raw transcript dumps.
 - Session filenames do not include the agent identity. Record the agent or tool
   identity in YAML frontmatter inside the Markdown file.
-- Public notes should preserve the initial intuition, useful context,
-  alternatives considered, decision points, selected direction, tradeoffs,
-  resulting artifacts, and next steps.
+- Public session notes should use third-person language. Refer to the owner as
+  "the user" rather than "I".
+- Public notes should foreground the user's initial intuition, prompting
+  trajectory, constraints, corrections, redirections, decision points,
+  selected direction, tradeoffs, resulting artifacts, and next steps.
+- Public notes should not include candid private observations about the user's
+  prompting behavior, personal challenges, or improvement suggestions. Keep
+  those in private session notes only.
 - Public notes must omit credentials, auth material, account identifiers,
   private contact details, unnecessary personal information, sensitive local
   paths, non-public business information, raw private transcripts, hidden

@@ -7,6 +7,11 @@ model:
 
 # Public Session: Short Title
 
+Use this template for curated public session summaries. Write in third person,
+refer to the project owner as "the user", and make the user's prompting,
+constraints, redirections, and decisions visible without exposing private
+reflection or candid improvement feedback.
+
 ## Initial Intuition
 
 Describe the public-safe idea or question that started the session.
@@ -14,6 +19,14 @@ Describe the public-safe idea or question that started the session.
 ## Useful Context
 
 Summarize context that helps public readers understand the work.
+
+## How The User Steered The Session
+
+- What the user asked for first:
+- Constraints the user introduced:
+- Assumptions the user challenged:
+- Corrections or redirections that shaped the outcome:
+- Decisions the user made:
 
 ## Alternatives Considered
 
@@ -45,3 +58,11 @@ State the direction chosen during the session.
 This note is a curated public summary. Raw private transcripts, sensitive local
 context, credentials, account details, unnecessary personal information, and
 non-public business information are omitted.
+
+Do not include candid private observations about the user's prompting behavior,
+personal challenges, or improvement suggestions in a public session note.
+
+## Follow-Ups
+
+- Follow-up one
+- Follow-up two
