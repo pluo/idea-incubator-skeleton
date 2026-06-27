@@ -57,9 +57,20 @@ likely to change.
 - If `private/` is a symlink, the symlink itself remains ignored.
 - Agents may create private Markdown session notes automatically under
   `private/` using `YYMMDD-topic-private-session.md` filenames.
+- Private session notes should be reflective records written to the user, from
+  the user's perspective. Use "I" for the user in private notes; do not use
+  "the user" to refer to the owner except in quoted text. Reserve "the user"
+  for public session summaries.
+- Private notes should foreground how the user prompted, corrected,
+  challenged, redirected, changed the trajectory, and made decisions with the
+  agent. They should not read like neutral summaries of model outputs.
+- Private notes may include honest personal context, challenges, experience,
+  lessons learned, and candid agent observations about the user's prompting and
+  decision-making behavior. Keep that feedback direct, specific, and useful;
+  avoid flattery, defensiveness, or vague praise.
 - Private notes should still remove irrelevant turns, credentials, auth
-  material, exact account identifiers, unnecessary personal details, and
-  anything the user marked sensitive.
+  material, exact account identifiers, unnecessary personal details that do not
+  help future continuation, and anything the user marked sensitive.
 - Agents must not stage, commit, quote from, or link to private notes from
   tracked files unless the user explicitly requests a sanitized public
   derivative.
