@@ -1,4 +1,4 @@
-# Repo Skeleton Design
+# Idea Incubator Skeleton Design
 
 Date: 2026-06-26
 Status: Approved for implementation planning
@@ -21,15 +21,15 @@ The skeleton is intended to be used as a copyable template directory.
 The canonical template lives in:
 
 ```text
-repo-skeleton-dev/
-  repo-skeleton/
+idea-incubator-skeleton-dev/
+  idea-incubator-skeleton/
 ```
 
-A user can start a future project by copying the contents of `repo-skeleton/`
+A user can start a future project by copying the contents of `idea-incubator-skeleton/`
 into a new repository. This keeps the skeleton portable and transparent without
 requiring an installer script or GitHub template repository.
 
-The outer repository, `repo-skeleton-dev`, is the development project for the
+The outer repository, `idea-incubator-skeleton-dev`, is the development project for the
 template itself. Its own `specs/` directory contains dated design records and
 implementation plans for developing the skeleton.
 
@@ -46,20 +46,20 @@ the same broad convention:
 In this development repository:
 
 ```text
-repo-skeleton-dev/
+idea-incubator-skeleton-dev/
   README.md
   specs/
-    YYMMDD-repo-skeleton-design.md
-    YYMMDD-repo-skeleton-implementation-plan.md
+    YYMMDD-idea-incubator-skeleton-design.md
+    YYMMDD-idea-incubator-skeleton-implementation-plan.md
 
-  repo-skeleton/
+  idea-incubator-skeleton/
     ...
 ```
 
 Inside the copyable template:
 
 ```text
-repo-skeleton/
+idea-incubator-skeleton/
   AGENTS.md
   CLAUDE.md -> AGENTS.md
   .gitignore
@@ -79,7 +79,7 @@ repo-skeleton/
 The agreed template structure is:
 
 ```text
-repo-skeleton/
+idea-incubator-skeleton/
   AGENTS.md
   CLAUDE.md
   .gitignore
@@ -151,8 +151,8 @@ Current-state documentation belongs in `docs/` and does not use date prefixes.
 working context. It must be ignored by Git.
 
 The copyable template includes its own `.gitignore` with `private` and
-`private/**` rules. The outer `repo-skeleton-dev` repository also ignores
-`repo-skeleton/private` so development of the template has the same guardrail.
+`private/**` rules. The outer `idea-incubator-skeleton-dev` repository also ignores
+`idea-incubator-skeleton/private` so development of the template has the same guardrail.
 
 The private workspace may be:
 

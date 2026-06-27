@@ -1,10 +1,10 @@
-# Repo Skeleton Implementation Plan
+# Idea Incubator Skeleton Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build `repo-skeleton/` into a copyable, public-first Git repository template for idea-first projects with ignored local private AI session space.
+**Goal:** Build `idea-incubator-skeleton/` into a copyable, public-first Git repository template for idea-first projects with ignored local private AI session space.
 
-**Architecture:** The outer `repo-skeleton-dev` repository contains development records for the template. The inner `repo-skeleton/` directory is the copyable template and contains only public-safe tracked files. The template uses Markdown-first documentation, dated provenance folders with in-place templates, current-state `docs/`, and a Git-ignored `private/` attachment point that may be a local folder or symlink.
+**Architecture:** The outer `idea-incubator-skeleton-dev` repository contains development records for the template. The inner `idea-incubator-skeleton/` directory is the copyable template and contains only public-safe tracked files. The template uses Markdown-first documentation, dated provenance folders with in-place templates, current-state `docs/`, and a Git-ignored `private/` attachment point that may be a local folder or symlink.
 
 **Tech Stack:** Git, Markdown, POSIX shell commands, symlinks, `.gitignore`.
 
@@ -12,27 +12,27 @@
 
 ## File Structure
 
-Create or modify these files in `/Users/peluo/repos/repo-skeleton-dev`:
+Create or modify these files in `/Users/peluo/repos/idea-incubator-skeleton-dev`:
 
-- Modify: `.gitignore` to explicitly ignore `repo-skeleton/private` as both a directory and a symlink.
+- Modify: `.gitignore` to explicitly ignore `idea-incubator-skeleton/private` as both a directory and a symlink.
 - Create: `README.md` to explain that this repository develops a copyable template directory.
-- Create: `repo-skeleton/.gitignore` so copied projects inherit the `private/` ignore rule.
-- Create: `repo-skeleton/AGENTS.md` as the canonical rules file for all agents.
-- Create: `repo-skeleton/CLAUDE.md` as a symlink to `AGENTS.md`.
-- Create: `repo-skeleton/README.md` as the public entry point copied into future projects.
-- Create: `repo-skeleton/docs/workflow.md` for current workflow guidance.
-- Create: `repo-skeleton/docs/public-provenance.md` for the public-history model.
-- Create: in-place Markdown template files in `repo-skeleton/docs/`, `repo-skeleton/ideas/`, `repo-skeleton/sessions/`, `repo-skeleton/decisions/`, `repo-skeleton/specs/`, and `repo-skeleton/research/` so Git preserves those documentation/provenance directories.
-- Do not create a separate `repo-skeleton/templates/` directory.
+- Create: `idea-incubator-skeleton/.gitignore` so copied projects inherit the `private/` ignore rule.
+- Create: `idea-incubator-skeleton/AGENTS.md` as the canonical rules file for all agents.
+- Create: `idea-incubator-skeleton/CLAUDE.md` as a symlink to `AGENTS.md`.
+- Create: `idea-incubator-skeleton/README.md` as the public entry point copied into future projects.
+- Create: `idea-incubator-skeleton/docs/workflow.md` for current workflow guidance.
+- Create: `idea-incubator-skeleton/docs/public-provenance.md` for the public-history model.
+- Create: in-place Markdown template files in `idea-incubator-skeleton/docs/`, `idea-incubator-skeleton/ideas/`, `idea-incubator-skeleton/sessions/`, `idea-incubator-skeleton/decisions/`, `idea-incubator-skeleton/specs/`, and `idea-incubator-skeleton/research/` so Git preserves those documentation/provenance directories.
+- Do not create a separate `idea-incubator-skeleton/templates/` directory.
 
-`repo-skeleton/private/` must not be committed. The implementation may verify ignore behavior using `git check-ignore` without creating a private file.
+`idea-incubator-skeleton/private/` must not be committed. The implementation may verify ignore behavior using `git check-ignore` without creating a private file.
 
 ### Task 1: Outer Repo Documentation And Ignore Boundary
 
 **Files:**
 - Modify: `.gitignore`
 - Create: `README.md`
-- Create: `repo-skeleton/.gitignore`
+- Create: `idea-incubator-skeleton/.gitignore`
 
 - [ ] **Step 1: Verify starting state**
 
@@ -40,9 +40,9 @@ Run:
 
 ```bash
 git status --short
-test -d repo-skeleton
-test ! -e repo-skeleton/private
-test ! -L repo-skeleton/private
+test -d idea-incubator-skeleton
+test ! -e idea-incubator-skeleton/private
+test ! -L idea-incubator-skeleton/private
 ```
 
 Expected:
@@ -58,9 +58,9 @@ Edit `.gitignore` by adding these lines under the `s3` section:
 
 ```gitignore
 
-# repo-skeleton local private workspace; keep untracked even when it is a symlink
-repo-skeleton/private
-repo-skeleton/private/**
+# idea-incubator-skeleton local private workspace; keep untracked even when it is a symlink
+idea-incubator-skeleton/private
+idea-incubator-skeleton/private/**
 ```
 
 - [ ] **Step 3: Create the outer README**
@@ -68,9 +68,9 @@ repo-skeleton/private/**
 Create `README.md` with this content:
 
 ````markdown
-# Repo Skeleton Dev
+# Idea Incubator Skeleton Dev
 
-This repository develops `repo-skeleton/`, a copyable Git repository skeleton for
+This repository develops `idea-incubator-skeleton/`, a copyable Git repository skeleton for
 idea-first projects.
 
 The skeleton is for early-stage ideas that may later become research projects,
@@ -80,10 +80,10 @@ of Git history.
 
 ## Intended Use
 
-Use `repo-skeleton/` as a copyable template directory:
+Use `idea-incubator-skeleton/` as a copyable template directory:
 
 ```sh
-cp -R repo-skeleton/. /path/to/new-project/
+cp -R idea-incubator-skeleton/. /path/to/new-project/
 ```
 
 After copying, initialize or continue Git in the destination project as needed.
@@ -93,13 +93,13 @@ private notes are kept in an ignored `private/` attachment point.
 ## Repository Layout
 
 ```text
-repo-skeleton-dev/
+idea-incubator-skeleton-dev/
   README.md
   specs/
-    YYMMDD-repo-skeleton-design.md
-    YYMMDD-repo-skeleton-implementation-plan.md
+    YYMMDD-idea-incubator-skeleton-design.md
+    YYMMDD-idea-incubator-skeleton-implementation-plan.md
 
-  repo-skeleton/
+  idea-incubator-skeleton/
     AGENTS.md
     CLAUDE.md -> AGENTS.md
     .gitignore
@@ -112,7 +112,7 @@ repo-skeleton-dev/
     research/
 ```
 
-`repo-skeleton-dev/specs/` contains dated design records and implementation
+`idea-incubator-skeleton-dev/specs/` contains dated design records and implementation
 plans for developing this template. Inside the template, `docs/` contains
 current documentation and `specs/` contains dated specs and plans for future
 projects created from the skeleton.
@@ -120,7 +120,7 @@ projects created from the skeleton.
 
 - [ ] **Step 4: Create the template ignore file**
 
-Create `repo-skeleton/.gitignore` with this content:
+Create `idea-incubator-skeleton/.gitignore` with this content:
 
 ```gitignore
 # Local private workspace; keep untracked even when it is a symlink
@@ -133,12 +133,12 @@ private/**
 Run:
 
 ```bash
-git check-ignore -v repo-skeleton/private repo-skeleton/private/260626-private-session.md
-git -C repo-skeleton check-ignore -v private private/260626-private-session.md
+git check-ignore -v idea-incubator-skeleton/private idea-incubator-skeleton/private/260626-private-session.md
+git -C idea-incubator-skeleton check-ignore -v private private/260626-private-session.md
 ```
 
 Expected output includes matching lines from the outer `.gitignore` for
-`repo-skeleton/private` paths and matching lines from `repo-skeleton/.gitignore`
+`idea-incubator-skeleton/private` paths and matching lines from `idea-incubator-skeleton/.gitignore`
 for copied-template `private` paths.
 
 - [ ] **Step 6: Verify formatting**
@@ -154,7 +154,7 @@ Expected:
 
 ```text
 git diff --check prints nothing.
-git status --short shows README.md, .gitignore, and repo-skeleton/.gitignore changed or untracked.
+git status --short shows README.md, .gitignore, and idea-incubator-skeleton/.gitignore changed or untracked.
 ```
 
 - [ ] **Step 7: Commit**
@@ -162,35 +162,35 @@ git status --short shows README.md, .gitignore, and repo-skeleton/.gitignore cha
 Run:
 
 ```bash
-git add README.md .gitignore repo-skeleton/.gitignore
+git add README.md .gitignore idea-incubator-skeleton/.gitignore
 git commit -m "Document copyable skeleton usage"
 ```
 
 Expected: commit succeeds and includes only `README.md`, `.gitignore`, and
-`repo-skeleton/.gitignore`.
+`idea-incubator-skeleton/.gitignore`.
 
 ### Task 2: Agent Rules And Claude Compatibility
 
 **Files:**
-- Create: `repo-skeleton/AGENTS.md`
-- Create symlink: `repo-skeleton/CLAUDE.md -> AGENTS.md`
+- Create: `idea-incubator-skeleton/AGENTS.md`
+- Create symlink: `idea-incubator-skeleton/CLAUDE.md -> AGENTS.md`
 
 - [ ] **Step 1: Verify no existing agent files would be replaced**
 
 Run:
 
 ```bash
-test ! -e repo-skeleton/AGENTS.md
-test ! -L repo-skeleton/AGENTS.md
-test ! -e repo-skeleton/CLAUDE.md
-test ! -L repo-skeleton/CLAUDE.md
+test ! -e idea-incubator-skeleton/AGENTS.md
+test ! -L idea-incubator-skeleton/AGENTS.md
+test ! -e idea-incubator-skeleton/CLAUDE.md
+test ! -L idea-incubator-skeleton/CLAUDE.md
 ```
 
 Expected: all commands exit 0.
 
 - [ ] **Step 2: Create canonical agent rules**
 
-Create `repo-skeleton/AGENTS.md` with this content:
+Create `idea-incubator-skeleton/AGENTS.md` with this content:
 
 ```markdown
 # Agent Instructions
@@ -274,7 +274,7 @@ Before each commit:
 
 1. Run `git status --short`.
 2. Run `git diff --check`.
-3. Confirm no `repo-skeleton/private` path is staged.
+3. Confirm no `idea-incubator-skeleton/private` path is staged.
 4. If committing a public session note, do a sanitization review against this
    file.
 5. Commit only public-safe tracked files.
@@ -285,7 +285,7 @@ Before each commit:
 Run:
 
 ```bash
-ln -s AGENTS.md repo-skeleton/CLAUDE.md
+ln -s AGENTS.md idea-incubator-skeleton/CLAUDE.md
 ```
 
 Expected: command exits 0.
@@ -295,9 +295,9 @@ Expected: command exits 0.
 Run:
 
 ```bash
-test -L repo-skeleton/CLAUDE.md
-readlink repo-skeleton/CLAUDE.md
-git status --short repo-skeleton/AGENTS.md repo-skeleton/CLAUDE.md
+test -L idea-incubator-skeleton/CLAUDE.md
+readlink idea-incubator-skeleton/CLAUDE.md
+git status --short idea-incubator-skeleton/AGENTS.md idea-incubator-skeleton/CLAUDE.md
 ```
 
 Expected:
@@ -322,7 +322,7 @@ Expected: no output.
 Run:
 
 ```bash
-git add repo-skeleton/AGENTS.md repo-skeleton/CLAUDE.md
+git add idea-incubator-skeleton/AGENTS.md idea-incubator-skeleton/CLAUDE.md
 git commit -m "Add skeleton agent rules"
 ```
 
@@ -331,13 +331,13 @@ Expected: commit succeeds and tracks `CLAUDE.md` as a symlink.
 ### Task 3: Template Entry Point And Current Documentation
 
 **Files:**
-- Create: `repo-skeleton/README.md`
-- Create: `repo-skeleton/docs/workflow.md`
-- Create: `repo-skeleton/docs/public-provenance.md`
+- Create: `idea-incubator-skeleton/README.md`
+- Create: `idea-incubator-skeleton/docs/workflow.md`
+- Create: `idea-incubator-skeleton/docs/public-provenance.md`
 
 - [ ] **Step 1: Create template README**
 
-Create `repo-skeleton/README.md` with this content:
+Create `idea-incubator-skeleton/README.md` with this content:
 
 ````markdown
 # Project Name
@@ -367,7 +367,7 @@ private store. The path is ignored by Git and must not appear in public history.
 This repository can be created by copying the contents of a template directory:
 
 ```sh
-cp -R repo-skeleton/. /path/to/new-project/
+cp -R idea-incubator-skeleton/. /path/to/new-project/
 ```
 
 After copying, update this README with the project name and public overview.
@@ -375,7 +375,7 @@ After copying, update this README with the project name and public overview.
 
 - [ ] **Step 2: Create workflow documentation**
 
-Create `repo-skeleton/docs/workflow.md` with this content:
+Create `idea-incubator-skeleton/docs/workflow.md` with this content:
 
 ````markdown
 # Workflow
@@ -413,7 +413,7 @@ relationship exists.
 
 - [ ] **Step 3: Create public provenance documentation**
 
-Create `repo-skeleton/docs/public-provenance.md` with this content:
+Create `idea-incubator-skeleton/docs/public-provenance.md` with this content:
 
 ```markdown
 # Public Provenance
@@ -446,11 +446,11 @@ local context.
 Run:
 
 ```bash
-find repo-skeleton -path repo-skeleton/private -prune -o -type f -print
+find idea-incubator-skeleton -path idea-incubator-skeleton/private -prune -o -type f -print
 ```
 
-Expected: output includes `repo-skeleton/README.md`,
-`repo-skeleton/docs/workflow.md`, and `repo-skeleton/docs/public-provenance.md`.
+Expected: output includes `idea-incubator-skeleton/README.md`,
+`idea-incubator-skeleton/docs/workflow.md`, and `idea-incubator-skeleton/docs/public-provenance.md`.
 
 - [ ] **Step 5: Verify formatting**
 
@@ -467,7 +467,7 @@ Expected: no output.
 Run:
 
 ```bash
-git add repo-skeleton/README.md repo-skeleton/docs/workflow.md repo-skeleton/docs/public-provenance.md
+git add idea-incubator-skeleton/README.md idea-incubator-skeleton/docs/workflow.md idea-incubator-skeleton/docs/public-provenance.md
 git commit -m "Add skeleton documentation"
 ```
 
@@ -476,17 +476,17 @@ Expected: commit succeeds and includes only the template README and current docs
 ### Task 4: In-Place Markdown Templates
 
 **Files:**
-- Create: `repo-skeleton/docs/current-feature-doc-template.md`
-- Create: `repo-skeleton/ideas/YYMMDD-idea-template.md`
-- Create: `repo-skeleton/sessions/YYMMDD-topic-session-template.md`
-- Create: `repo-skeleton/sessions/YYMMDD-topic-private-session-template.md`
-- Create: `repo-skeleton/decisions/000-decision-template.md`
-- Create: `repo-skeleton/specs/YYMMDD-feature-design-template.md`
-- Create: `repo-skeleton/research/YYMMDD-research-template.md`
+- Create: `idea-incubator-skeleton/docs/current-feature-doc-template.md`
+- Create: `idea-incubator-skeleton/ideas/YYMMDD-idea-template.md`
+- Create: `idea-incubator-skeleton/sessions/YYMMDD-topic-session-template.md`
+- Create: `idea-incubator-skeleton/sessions/YYMMDD-topic-private-session-template.md`
+- Create: `idea-incubator-skeleton/decisions/000-decision-template.md`
+- Create: `idea-incubator-skeleton/specs/YYMMDD-feature-design-template.md`
+- Create: `idea-incubator-skeleton/research/YYMMDD-research-template.md`
 
 - [ ] **Step 1: Create current documentation template**
 
-Create `repo-skeleton/docs/current-feature-doc-template.md` with this content:
+Create `idea-incubator-skeleton/docs/current-feature-doc-template.md` with this content:
 
 ```markdown
 ---
@@ -515,7 +515,7 @@ Explain the current state readers should rely on.
 
 - [ ] **Step 2: Create idea template**
 
-Create `repo-skeleton/ideas/YYMMDD-idea-template.md` with this content:
+Create `idea-incubator-skeleton/ideas/YYMMDD-idea-template.md` with this content:
 
 ```markdown
 ---
@@ -547,7 +547,7 @@ Explain what prompted the idea and why it matters now.
 
 - [ ] **Step 3: Create public session template**
 
-Create `repo-skeleton/sessions/YYMMDD-topic-session-template.md` with this content:
+Create `idea-incubator-skeleton/sessions/YYMMDD-topic-session-template.md` with this content:
 
 ```markdown
 ---
@@ -601,7 +601,7 @@ non-public business information are omitted.
 
 - [ ] **Step 4: Create private session template inside sessions**
 
-Create `repo-skeleton/sessions/YYMMDD-topic-private-session-template.md` with this content:
+Create `idea-incubator-skeleton/sessions/YYMMDD-topic-private-session-template.md` with this content:
 
 ```markdown
 ---
@@ -653,7 +653,7 @@ Summarize the useful reasoning and exploration.
 
 - [ ] **Step 5: Create decision template**
 
-Create `repo-skeleton/decisions/000-decision-template.md` with this content:
+Create `idea-incubator-skeleton/decisions/000-decision-template.md` with this content:
 
 ```markdown
 ---
@@ -689,7 +689,7 @@ Explain why this option was chosen.
 
 - [ ] **Step 6: Create design spec template**
 
-Create `repo-skeleton/specs/YYMMDD-feature-design-template.md` with this content:
+Create `idea-incubator-skeleton/specs/YYMMDD-feature-design-template.md` with this content:
 
 ```markdown
 ---
@@ -733,7 +733,7 @@ Record constraints, sequencing notes, and verification expectations.
 
 - [ ] **Step 7: Create research template**
 
-Create `repo-skeleton/research/YYMMDD-research-template.md` with this content:
+Create `idea-incubator-skeleton/research/YYMMDD-research-template.md` with this content:
 
 ```markdown
 ---
@@ -772,19 +772,19 @@ Explain what the findings change about the project.
 Run:
 
 ```bash
-find repo-skeleton -path repo-skeleton/private -prune -o -type f -name '*template.md' -print | sort
+find idea-incubator-skeleton -path idea-incubator-skeleton/private -prune -o -type f -name '*template.md' -print | sort
 ```
 
 Expected output:
 
 ```text
-repo-skeleton/decisions/000-decision-template.md
-repo-skeleton/docs/current-feature-doc-template.md
-repo-skeleton/ideas/YYMMDD-idea-template.md
-repo-skeleton/research/YYMMDD-research-template.md
-repo-skeleton/sessions/YYMMDD-topic-private-session-template.md
-repo-skeleton/sessions/YYMMDD-topic-session-template.md
-repo-skeleton/specs/YYMMDD-feature-design-template.md
+idea-incubator-skeleton/decisions/000-decision-template.md
+idea-incubator-skeleton/docs/current-feature-doc-template.md
+idea-incubator-skeleton/ideas/YYMMDD-idea-template.md
+idea-incubator-skeleton/research/YYMMDD-research-template.md
+idea-incubator-skeleton/sessions/YYMMDD-topic-private-session-template.md
+idea-incubator-skeleton/sessions/YYMMDD-topic-session-template.md
+idea-incubator-skeleton/specs/YYMMDD-feature-design-template.md
 ```
 
 - [ ] **Step 9: Verify no separate templates directory exists**
@@ -792,7 +792,7 @@ repo-skeleton/specs/YYMMDD-feature-design-template.md
 Run:
 
 ```bash
-test ! -e repo-skeleton/templates
+test ! -e idea-incubator-skeleton/templates
 ```
 
 Expected: command exits 0.
@@ -812,7 +812,7 @@ Expected: no output.
 Run:
 
 ```bash
-git add repo-skeleton/docs/current-feature-doc-template.md repo-skeleton/ideas/YYMMDD-idea-template.md repo-skeleton/sessions/YYMMDD-topic-session-template.md repo-skeleton/sessions/YYMMDD-topic-private-session-template.md repo-skeleton/decisions/000-decision-template.md repo-skeleton/specs/YYMMDD-feature-design-template.md repo-skeleton/research/YYMMDD-research-template.md
+git add idea-incubator-skeleton/docs/current-feature-doc-template.md idea-incubator-skeleton/ideas/YYMMDD-idea-template.md idea-incubator-skeleton/sessions/YYMMDD-topic-session-template.md idea-incubator-skeleton/sessions/YYMMDD-topic-private-session-template.md idea-incubator-skeleton/decisions/000-decision-template.md idea-incubator-skeleton/specs/YYMMDD-feature-design-template.md idea-incubator-skeleton/research/YYMMDD-research-template.md
 git commit -m "Add in-place skeleton templates"
 ```
 
@@ -822,7 +822,7 @@ Expected: commit succeeds and includes the seven in-place template files.
 
 **Files:**
 - Verify: `.gitignore`
-- Verify: `repo-skeleton/`
+- Verify: `idea-incubator-skeleton/`
 - Verify: Git index
 
 - [ ] **Step 1: Verify private path remains ignored**
@@ -830,28 +830,28 @@ Expected: commit succeeds and includes the seven in-place template files.
 Run:
 
 ```bash
-git check-ignore -v repo-skeleton/private repo-skeleton/private/260626-private-session.md
-git -C repo-skeleton check-ignore -v private private/260626-private-session.md
+git check-ignore -v idea-incubator-skeleton/private idea-incubator-skeleton/private/260626-private-session.md
+git -C idea-incubator-skeleton check-ignore -v private private/260626-private-session.md
 ```
 
-Expected output includes outer `.gitignore` matches for the `repo-skeleton/private`
-paths and `repo-skeleton/.gitignore` matches for copied-template `private` paths.
+Expected output includes outer `.gitignore` matches for the `idea-incubator-skeleton/private`
+paths and `idea-incubator-skeleton/.gitignore` matches for copied-template `private` paths.
 
 - [ ] **Step 2: Verify Claude symlink**
 
 Run:
 
 ```bash
-test -L repo-skeleton/CLAUDE.md
-readlink repo-skeleton/CLAUDE.md
-git ls-files -s repo-skeleton/CLAUDE.md
+test -L idea-incubator-skeleton/CLAUDE.md
+readlink idea-incubator-skeleton/CLAUDE.md
+git ls-files -s idea-incubator-skeleton/CLAUDE.md
 ```
 
 Expected:
 
 ```text
 readlink prints AGENTS.md.
-git ls-files mode for repo-skeleton/CLAUDE.md starts with 120000.
+git ls-files mode for idea-incubator-skeleton/CLAUDE.md starts with 120000.
 ```
 
 - [ ] **Step 3: Verify tracked files are public-safe paths**
@@ -863,18 +863,18 @@ git ls-files | sort
 ```
 
 Expected: output includes public template files and does not include any path
-starting with `repo-skeleton/private`.
+starting with `idea-incubator-skeleton/private`.
 
 - [ ] **Step 4: Verify Markdown-only documentation under the template**
 
 Run:
 
 ```bash
-find repo-skeleton -path repo-skeleton/private -prune -o -type f -print | sort
+find idea-incubator-skeleton -path idea-incubator-skeleton/private -prune -o -type f -print | sort
 ```
 
 Expected: every printed template documentation, guide, and template file ends in
-`.md`; `repo-skeleton/CLAUDE.md` is a symlink to `AGENTS.md`.
+`.md`; `idea-incubator-skeleton/CLAUDE.md` is a symlink to `AGENTS.md`.
 
 - [ ] **Step 5: Verify clean Git state**
 

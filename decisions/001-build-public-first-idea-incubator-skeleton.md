@@ -3,7 +3,7 @@ description: Records why this public-first idea incubation skeleton exists.
 created: 2026-06-27
 ---
 
-# Decision: Build a Public-First Idea Incubation Repo Skeleton
+# Decision: Build a Public-First Idea Incubation Idea Incubator Skeleton
 
 ## Decision
 

@@ -1,11 +1,11 @@
 ---
-description: Public session summary for developing the idea-repo-skeleton project.
+description: Public session summary for developing the idea-incubator-skeleton project.
 created: 2026-06-27
 agent: Codex
 model: GPT-5
 ---
 
-# Public Session: Developing idea-repo-skeleton
+# Public Session: Developing idea-incubator-skeleton
 
 ## Initial Intuition
 
@@ -47,7 +47,10 @@ unnecessary personal information.
   resistant to future implementation churn.
 - The user directed the project name discussion toward a balance of
   searchability, clarity, and distinctiveness, then selected
-  `idea-repo-skeleton`.
+  `idea-incubator-skeleton`.
+- The user later revisited the name, identified possible confusion between
+  "idea repo" and IntelliJ IDEA, and chose `idea-incubator-skeleton` as the
+  clearer public name.
 
 ## Alternatives Considered
 
@@ -58,6 +61,8 @@ unnecessary personal information.
   family.
 - Dated decision records versus numbered decision records.
 - Creative project names versus a plain, searchable GitHub repository name.
+- The earlier searchable name versus `idea-incubator-skeleton` after the
+  IntelliJ IDEA ambiguity became clear.
 
 ## Decision Points
 
@@ -71,7 +76,8 @@ unnecessary personal information.
 - Use numbered filenames for decision records.
 - Keep current-state documentation under `docs/` and dated implementation
   plans under `specs/`.
-- Name the public project `idea-repo-skeleton`.
+- Name the public project `idea-incubator-skeleton`.
+- Rename the copyable template directory to `idea-incubator-skeleton/`.
 
 ## Selected Direction
 
@@ -93,13 +99,13 @@ specs, research, optional implementation code, and ignored private notes.
   filenames must clearly indicate that they are templates.
 - Numbered decision records are easier to read as a stable decision sequence,
   but they are less directly chronological than dated note families.
-- A plain name is more searchable, but less visually distinctive than a more
-  branded name.
+- `idea-incubator-skeleton` is slightly longer than the earlier name, but it is
+  less ambiguous for developer readers.
 
 ## Resulting Artifacts
 
-- A public Git repository named `idea-repo-skeleton`.
-- A copyable template directory under `repo-skeleton/`.
+- A public Git repository named `idea-incubator-skeleton`.
+- A copyable template directory under `idea-incubator-skeleton/`.
 - Agent rules for public/private session handling, decision note brevity, and
   Markdown-first documentation.
 - A `CLAUDE.md` symlink to `AGENTS.md`.

@@ -1,6 +1,6 @@
-# Repo Skeleton Dev
+# Idea Incubator Skeleton Dev
 
-This repository develops `repo-skeleton/`, a copyable Git repository skeleton for
+This repository develops `idea-incubator-skeleton/`, a copyable Git repository skeleton for
 idea-first projects.
 
 The skeleton is for early-stage ideas that may later become research projects,
@@ -10,10 +10,10 @@ of Git history.
 
 ## Intended Use
 
-Use `repo-skeleton/` as a copyable template directory:
+Use `idea-incubator-skeleton/` as a copyable template directory:
 
 ```sh
-cp -R repo-skeleton/. /path/to/new-project/
+cp -R idea-incubator-skeleton/. /path/to/new-project/
 ```
 
 After copying, initialize or continue Git in the destination project as needed.
@@ -23,13 +23,13 @@ private notes are kept in an ignored `private/` attachment point.
 ## Repository Layout
 
 ```text
-repo-skeleton-dev/
+idea-incubator-skeleton-dev/
   README.md
   specs/
-    YYMMDD-repo-skeleton-design.md
-    YYMMDD-repo-skeleton-implementation-plan.md
+    YYMMDD-idea-incubator-skeleton-design.md
+    YYMMDD-idea-incubator-skeleton-implementation-plan.md
 
-  repo-skeleton/
+  idea-incubator-skeleton/
     AGENTS.md
     CLAUDE.md -> AGENTS.md
     .gitignore
@@ -42,7 +42,7 @@ repo-skeleton-dev/
     research/
 ```
 
-`repo-skeleton-dev/specs/` contains dated design records and implementation
+`idea-incubator-skeleton-dev/specs/` contains dated design records and implementation
 plans for developing this template. Inside the template, `docs/` contains
 current documentation and `specs/` contains dated specs and plans for future
 projects created from the skeleton.

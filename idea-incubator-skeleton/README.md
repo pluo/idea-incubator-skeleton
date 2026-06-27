@@ -25,7 +25,7 @@ private store. The path is ignored by Git and must not appear in public history.
 This repository can be created by copying the contents of a template directory:
 
 ```sh
-cp -R repo-skeleton/. /path/to/new-project/
+cp -R idea-incubator-skeleton/. /path/to/new-project/
 ```
 
 After copying, update this README with the project name and public overview.

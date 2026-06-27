@@ -103,7 +103,8 @@ Before each commit:
 
 1. Run `git status --short`.
 2. Run `git diff --check`.
-3. Confirm no `repo-skeleton/private` path is staged.
+3. Confirm no `private/` path, private symlink, or private symlink target is
+   staged.
 4. If committing a public session note, do a sanitization review against this
    file.
 5. Commit only public-safe tracked files.

@@ -16,8 +16,8 @@
 
 ## s3. then re-deny unwanted files that were allowed too loosely in s2
 
-# repo-skeleton local private workspace; keep untracked even when it is a symlink
+# idea-incubator-skeleton local private workspace; keep untracked even when it is a symlink
 private
 private/**
-repo-skeleton/private
-repo-skeleton/private/**
+idea-incubator-skeleton/private
+idea-incubator-skeleton/private/**
