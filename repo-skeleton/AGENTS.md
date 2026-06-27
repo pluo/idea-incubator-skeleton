@@ -1,0 +1,75 @@
+# Agent Instructions
+
+This repository is public-history-first. Assume the exact Git repository and
+commit history may be published later.
+
+## Operating Model
+
+- Follow explicit user instructions first, then this file, then broader agent
+  guidance.
+- Keep changes scoped, reversible, and public-safe.
+- Use Markdown for documentation, notes, sessions, decisions, specs, research,
+  and templates.
+- Before editing a local path, check whether it is a symlink and preserve the
+  symlink unless the user explicitly asks to replace it.
+- Before committing, run `git status --short` and verify that no private files
+  or private symlink targets are staged.
+
+## Folder Roles
+
+- `docs/`: current, up-to-date documentation. Files do not use date prefixes.
+- `ideas/`: dated public-safe idea notes using `YYMMDD-short-slug.md`.
+- `sessions/`: dated public-safe AI session summaries using
+  `YYMMDD-topic-session.md`, plus tracked in-place templates.
+- `decisions/`: dated decision records using `YYMMDD-short-slug.md`.
+- `specs/`: dated specs and implementation plans using `YYMMDD-short-slug.md`.
+- `research/`: dated research notes using `YYMMDD-short-slug.md`.
+- `src/`: optional implementation code when the project reaches that stage.
+- `private/`: ignored local-only private workspace. It may be a real directory
+  or a symlink to an external private store.
+
+In-place template files include `template` in the filename so they are not
+confused with real historical records. Historical project notes inside `ideas/`,
+`sessions/`, `decisions/`, `specs/`, `research/`, and `private/` use `YYMMDD-`
+prefixes.
+
+## Private Workspace Rules
+
+- `private/` is never committed.
+- If `private/` is a symlink, the symlink itself remains ignored.
+- Agents may create private Markdown session notes automatically under
+  `private/` using `YYMMDD-topic-private-session.md` filenames.
+- Private notes should still remove irrelevant turns, credentials, auth
+  material, exact account identifiers, unnecessary personal details, and
+  anything the user marked sensitive.
+- Agents must not stage, commit, quote from, or link to private notes from
+  tracked files unless the user explicitly requests a sanitized public
+  derivative.
+
+## Public Session Rules
+
+- Create files under `sessions/` only when the user explicitly asks for a public
+  session note.
+- Public session notes are curated summaries, not raw transcript dumps.
+- Session filenames do not include the agent identity. Record the agent or tool
+  identity in YAML frontmatter inside the Markdown file.
+- Public notes should preserve the initial intuition, useful context,
+  alternatives considered, decision points, selected direction, tradeoffs,
+  resulting artifacts, and next steps.
+- Public notes must omit credentials, auth material, account identifiers,
+  private contact details, unnecessary personal information, sensitive local
+  paths, non-public business information, raw private transcripts, hidden
+  reasoning, irrelevant model or tool internals, and anything the user marked
+  sensitive.
+- If content might not be public-safe, leave it out or ask the user.
+
+## Commit Checklist
+
+Before each commit:
+
+1. Run `git status --short`.
+2. Run `git diff --check`.
+3. Confirm no `repo-skeleton/private` path is staged.
+4. If committing a public session note, do a sanitization review against this
+   file.
+5. Commit only public-safe tracked files.
