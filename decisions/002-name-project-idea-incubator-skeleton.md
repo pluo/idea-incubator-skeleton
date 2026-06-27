@@ -3,7 +3,7 @@ description: Records the decision to name the public project idea-incubator-skel
 created: 2026-06-27
 ---
 
-# Decision: Name the Project idea-incubator-skeleton
+# Decision 2: Name the Project idea-incubator-skeleton
 
 ## Decision
 
@@ -18,9 +18,8 @@ The project is a reusable idea incubation skeleton. It helps preserve
 public-safe provenance from the first intuition through notes, AI-assisted
 sessions, decisions, specs, research, and optional implementation.
 
-The earlier name, `idea-repo-skeleton`, favored plain search terms, but it could
-be misread as a repository related to the IntelliJ IDEA IDE. The name should
-avoid that ambiguity while staying clear and searchable.
+The name should describe the project clearly, avoid unnecessary ambiguity, and
+remain easy to search.
 
 ## Options Considered
 

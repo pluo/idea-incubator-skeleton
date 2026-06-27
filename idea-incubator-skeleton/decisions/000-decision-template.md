@@ -3,7 +3,7 @@ description: Template for decision records capturing context, options, rationale
 created: YYYY-MM-DD
 ---
 
-# Decision: Short Title
+# Decision N: Short Title
 
 ## Decision
 

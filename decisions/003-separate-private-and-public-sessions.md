@@ -3,7 +3,7 @@ description: Records the two-track model for private and public AI session notes
 created: 2026-06-27
 ---
 
-# Decision: Separate Private and Public AI Session Notes
+# Decision 3: Separate Private and Public AI Session Notes
 
 ## Decision
 
