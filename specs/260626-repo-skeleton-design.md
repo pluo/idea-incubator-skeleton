@@ -70,8 +70,6 @@ repo-skeleton/
   decisions/
   specs/
   research/
-  src/
-  templates/
   private/
 ```
 
@@ -88,42 +86,34 @@ repo-skeleton/
   docs/
     workflow.md
     public-provenance.md
+    current-feature-doc-template.md
 
   ideas/
-    YYMMDD-short-idea-slug.md
+    YYMMDD-idea-template.md
 
   sessions/
-    YYMMDD-agent-topic-session.md
+    YYMMDD-topic-session-template.md
+    YYMMDD-topic-private-session-template.md
 
   decisions/
-    YYMMDD-short-decision-slug.md
+    YYMMDD-decision-template.md
 
   specs/
-    YYMMDD-short-spec-or-plan-slug.md
+    YYMMDD-feature-design-template.md
 
   research/
-    YYMMDD-short-research-slug.md
-
-  src/
-
-  templates/
-    idea.md
-    private-session.md
-    public-session.md
-    decision.md
-    spec.md
-    research.md
+    YYMMDD-research-template.md
 
   private/
-    YYMMDD-agent-topic-private-session.md
+    YYMMDD-topic-private-session.md
 ```
 
 `AGENTS.md` is the canonical agent instruction file. `CLAUDE.md` should be a
 symlink to `AGENTS.md` so Claude Code and Codex share the same rules without
 drift.
 
-All notes, documentation, sessions, decisions, specs, research, and templates
-inside the skeleton are Markdown files.
+All notes, documentation, sessions, decisions, specs, research, and in-place
+templates inside the skeleton are Markdown files.
 
 ## Public-First Provenance Model
 
@@ -170,6 +160,9 @@ Public session notes live in `sessions/`.
 Agents may create a public session note only when the user explicitly asks for
 one. Public session notes are curated Markdown summaries, not raw transcript
 dumps.
+
+Session filenames should not include the agent identity. Record the agent or
+tool identity in YAML frontmatter inside the Markdown file instead.
 
 Public session notes should preserve:
 
@@ -219,23 +212,31 @@ The intended roles are:
 - `src/` is reserved for later implementation so code can appear without
   restructuring the repository.
 
-## Templates
+## In-Place Templates
 
-The skeleton should include lightweight Markdown templates:
+The skeleton should include lightweight Markdown templates inside the folders
+where future notes will live:
 
-- `templates/idea.md`: initial intuition, context, why now, possible directions,
-  and open questions.
-- `templates/private-session.md`: user goal, cleaned private context, session
-  summary, alternatives, decisions, unresolved concerns, and follow-ups.
-- `templates/public-session.md`: public-safe session summary, initial intuition,
-  useful context, decision points, tradeoffs, artifacts, and omitted-private
-  details statement.
-- `templates/decision.md`: decision, context, options considered, rationale,
-  consequences, supersedes, and superseded-by links.
-- `templates/spec.md`: goal, context, scope, non-goals, design, acceptance
-  criteria, and implementation notes.
-- `templates/research.md`: question, observations, findings, implications, and
-  follow-ups.
+- `docs/current-feature-doc-template.md`: current documentation template without
+  a date prefix.
+- `ideas/YYMMDD-idea-template.md`: initial intuition, context, why now, possible
+  directions, and open questions.
+- `sessions/YYMMDD-topic-session-template.md`: public-safe session summary,
+  initial intuition, useful context, decision points, tradeoffs, artifacts, and
+  omitted-private-details statement.
+- `sessions/YYMMDD-topic-private-session-template.md`: tracked public-safe
+  template for private notes that should be copied into ignored `private/`
+  before use.
+- `decisions/YYMMDD-decision-template.md`: decision, context, options
+  considered, rationale, consequences, supersedes, and superseded-by links.
+- `specs/YYMMDD-feature-design-template.md`: goal, context, scope, non-goals,
+  design, acceptance criteria, and implementation notes.
+- `research/YYMMDD-research-template.md`: question, observations, findings,
+  implications, and follow-ups.
+
+Template filenames include `template` so they are not confused with real
+historical records. Actual dated notes should be created by copying a template,
+renaming it, and updating its frontmatter and body.
 
 ## Verification And Commit Rules
 

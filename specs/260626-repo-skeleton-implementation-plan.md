@@ -4,7 +4,7 @@
 
 **Goal:** Build `repo-skeleton/` into a copyable, public-first Git repository template for idea-first projects with ignored local private AI session space.
 
-**Architecture:** The outer `repo-skeleton-dev` repository contains development records for the template. The inner `repo-skeleton/` directory is the copyable template and contains only public-safe tracked files. The template uses Markdown-first documentation, dated provenance folders, current-state `docs/`, and a Git-ignored `private/` attachment point that may be a local folder or symlink.
+**Architecture:** The outer `repo-skeleton-dev` repository contains development records for the template. The inner `repo-skeleton/` directory is the copyable template and contains only public-safe tracked files. The template uses Markdown-first documentation, dated provenance folders with in-place templates, current-state `docs/`, and a Git-ignored `private/` attachment point that may be a local folder or symlink.
 
 **Tech Stack:** Git, Markdown, POSIX shell commands, symlinks, `.gitignore`.
 
@@ -21,8 +21,8 @@ Create or modify these files in `/Users/peluo/repos/repo-skeleton-dev`:
 - Create: `repo-skeleton/README.md` as the public entry point copied into future projects.
 - Create: `repo-skeleton/docs/workflow.md` for current workflow guidance.
 - Create: `repo-skeleton/docs/public-provenance.md` for the public-history model.
-- Create: folder guide Markdown files in `repo-skeleton/ideas/`, `repo-skeleton/sessions/`, `repo-skeleton/decisions/`, `repo-skeleton/specs/`, `repo-skeleton/research/`, and `repo-skeleton/src/` so Git preserves those directories.
-- Create: Markdown templates in `repo-skeleton/templates/`.
+- Create: in-place Markdown template files in `repo-skeleton/docs/`, `repo-skeleton/ideas/`, `repo-skeleton/sessions/`, `repo-skeleton/decisions/`, `repo-skeleton/specs/`, and `repo-skeleton/research/` so Git preserves those documentation/provenance directories.
+- Do not create a separate `repo-skeleton/templates/` directory.
 
 `repo-skeleton/private/` must not be committed. The implementation may verify ignore behavior using `git check-ignore` without creating a private file.
 
@@ -107,8 +107,6 @@ repo-skeleton-dev/
     decisions/
     specs/
     research/
-    src/
-    templates/
 ```
 
 `repo-skeleton-dev/specs/` contains dated design records and implementation
@@ -200,25 +198,25 @@ commit history may be published later.
 - `docs/`: current, up-to-date documentation. Files do not use date prefixes.
 - `ideas/`: dated public-safe idea notes using `YYMMDD-short-slug.md`.
 - `sessions/`: dated public-safe AI session summaries using
-  `YYMMDD-agent-topic-session.md`.
+  `YYMMDD-topic-session.md`, plus tracked in-place templates.
 - `decisions/`: dated decision records using `YYMMDD-short-slug.md`.
 - `specs/`: dated specs and implementation plans using `YYMMDD-short-slug.md`.
 - `research/`: dated research notes using `YYMMDD-short-slug.md`.
 - `src/`: optional implementation code when the project reaches that stage.
-- `templates/`: Markdown templates for repeatable project artifacts.
 - `private/`: ignored local-only private workspace. It may be a real directory
   or a symlink to an external private store.
 
-Folder `README.md` files are allowed as public folder guides. Historical project
-notes inside `ideas/`, `sessions/`, `decisions/`, `specs/`, `research/`, and
-`private/` use `YYMMDD-` prefixes.
+In-place template files include `template` in the filename so they are not
+confused with real historical records. Historical project notes inside `ideas/`,
+`sessions/`, `decisions/`, `specs/`, `research/`, and `private/` use `YYMMDD-`
+prefixes.
 
 ## Private Workspace Rules
 
 - `private/` is never committed.
 - If `private/` is a symlink, the symlink itself remains ignored.
 - Agents may create private Markdown session notes automatically under
-  `private/`.
+  `private/` using `YYMMDD-topic-private-session.md` filenames.
 - Private notes should still remove irrelevant turns, credentials, auth
   material, exact account identifiers, unnecessary personal details, and
   anything the user marked sensitive.
@@ -231,6 +229,8 @@ notes inside `ideas/`, `sessions/`, `decisions/`, `specs/`, `research/`, and
 - Create files under `sessions/` only when the user explicitly asks for a public
   session note.
 - Public session notes are curated summaries, not raw transcript dumps.
+- Session filenames do not include the agent identity. Record the agent or tool
+  identity in YAML frontmatter inside the Markdown file.
 - Public notes should preserve the initial intuition, useful context,
   alternatives considered, decision points, selected direction, tradeoffs,
   resulting artifacts, and next steps.
@@ -372,7 +372,7 @@ folder do not need date prefixes because they describe the current state.
 Use dated Markdown files for historical records:
 
 - `ideas/YYMMDD-short-slug.md`
-- `sessions/YYMMDD-agent-topic-session.md`
+- `sessions/YYMMDD-topic-session.md`
 - `decisions/YYMMDD-short-slug.md`
 - `specs/YYMMDD-short-slug.md`
 - `research/YYMMDD-short-slug.md`
@@ -443,151 +443,56 @@ git commit -m "Add skeleton documentation"
 
 Expected: commit succeeds and includes only the template README and current docs.
 
-### Task 4: Folder Guides
+### Task 4: In-Place Markdown Templates
 
 **Files:**
-- Create: `repo-skeleton/ideas/README.md`
-- Create: `repo-skeleton/sessions/README.md`
-- Create: `repo-skeleton/decisions/README.md`
-- Create: `repo-skeleton/specs/README.md`
-- Create: `repo-skeleton/research/README.md`
-- Create: `repo-skeleton/src/README.md`
+- Create: `repo-skeleton/docs/current-feature-doc-template.md`
+- Create: `repo-skeleton/ideas/YYMMDD-idea-template.md`
+- Create: `repo-skeleton/sessions/YYMMDD-topic-session-template.md`
+- Create: `repo-skeleton/sessions/YYMMDD-topic-private-session-template.md`
+- Create: `repo-skeleton/decisions/YYMMDD-decision-template.md`
+- Create: `repo-skeleton/specs/YYMMDD-feature-design-template.md`
+- Create: `repo-skeleton/research/YYMMDD-research-template.md`
 
-- [ ] **Step 1: Create idea folder guide**
+- [ ] **Step 1: Create current documentation template**
 
-Create `repo-skeleton/ideas/README.md` with this content:
-
-```markdown
-# Ideas
-
-Use this folder for public-safe initial intuitions and early project thoughts.
-
-Name idea notes with `YYMMDD-short-idea-slug.md`.
-```
-
-- [ ] **Step 2: Create session folder guide**
-
-Create `repo-skeleton/sessions/README.md` with this content:
+Create `repo-skeleton/docs/current-feature-doc-template.md` with this content:
 
 ```markdown
-# Sessions
+---
+title: Current Feature Documentation
+status: current
+---
 
-Use this folder for public-safe AI session summaries created only after explicit
-user instruction.
+# Current Feature Documentation
 
-Name public session notes with `YYMMDD-agent-topic-session.md`.
+## Purpose
+
+Describe the current behavior, workflow, or architecture in public-safe language.
+
+## How It Works
+
+Explain the current state readers should rely on.
+
+## Related Historical Records
+
+- Idea:
+- Session:
+- Decision:
+- Spec:
 ```
 
-- [ ] **Step 3: Create decision folder guide**
+- [ ] **Step 2: Create idea template**
 
-Create `repo-skeleton/decisions/README.md` with this content:
+Create `repo-skeleton/ideas/YYMMDD-idea-template.md` with this content:
 
 ```markdown
-# Decisions
+---
+date: YYMMDD
+status: draft
+---
 
-Use this folder for durable decision records.
-
-Name decision notes with `YYMMDD-short-decision-slug.md`.
-```
-
-- [ ] **Step 4: Create specs folder guide**
-
-Create `repo-skeleton/specs/README.md` with this content:
-
-```markdown
-# Specs
-
-Use this folder for dated design specs, implementation plans, and planning
-records.
-
-Name spec and plan files with `YYMMDD-short-spec-or-plan-slug.md`.
-```
-
-- [ ] **Step 5: Create research folder guide**
-
-Create `repo-skeleton/research/README.md` with this content:
-
-```markdown
-# Research
-
-Use this folder for dated research notes, source summaries, comparisons, and
-findings.
-
-Name research notes with `YYMMDD-short-research-slug.md`.
-```
-
-- [ ] **Step 6: Create source folder guide**
-
-Create `repo-skeleton/src/README.md` with this content:
-
-```markdown
-# Source
-
-Use this folder for implementation code when the project reaches that stage.
-
-Keep code organization aligned with the actual technology chosen for the
-project.
-```
-
-- [ ] **Step 7: Verify tracked folder guides**
-
-Run:
-
-```bash
-find repo-skeleton -name README.md -print | sort
-```
-
-Expected output includes:
-
-```text
-repo-skeleton/README.md
-repo-skeleton/decisions/README.md
-repo-skeleton/ideas/README.md
-repo-skeleton/research/README.md
-repo-skeleton/sessions/README.md
-repo-skeleton/specs/README.md
-repo-skeleton/src/README.md
-```
-
-- [ ] **Step 8: Verify formatting**
-
-Run:
-
-```bash
-git diff --check
-```
-
-Expected: no output.
-
-- [ ] **Step 9: Commit**
-
-Run:
-
-```bash
-git add repo-skeleton/ideas/README.md repo-skeleton/sessions/README.md repo-skeleton/decisions/README.md repo-skeleton/specs/README.md repo-skeleton/research/README.md repo-skeleton/src/README.md
-git commit -m "Add skeleton folder guides"
-```
-
-Expected: commit succeeds and includes the six folder guide files.
-
-### Task 5: Markdown Templates
-
-**Files:**
-- Create: `repo-skeleton/templates/idea.md`
-- Create: `repo-skeleton/templates/private-session.md`
-- Create: `repo-skeleton/templates/public-session.md`
-- Create: `repo-skeleton/templates/decision.md`
-- Create: `repo-skeleton/templates/spec.md`
-- Create: `repo-skeleton/templates/research.md`
-
-- [ ] **Step 1: Create idea template**
-
-Create `repo-skeleton/templates/idea.md` with this content:
-
-```markdown
 # Idea: Short Title
-
-Date: YYMMDD
 
 ## Initial Intuition
 
@@ -609,60 +514,19 @@ Explain what prompted the idea and why it matters now.
 - Question two
 ```
 
-- [ ] **Step 2: Create private session template**
-
-Create `repo-skeleton/templates/private-session.md` with this content:
-
-```markdown
-# Private Session: Short Title
-
-Date: YYMMDD
-Agent:
-
-## User Goal
-
-Record the user's goal for this session.
-
-## Cleaned Private Context
-
-Keep useful private context after removing irrelevant turns and sensitive
-material that should not be retained.
-
-## Session Summary
-
-Summarize the useful reasoning and exploration.
-
-## Alternatives Considered
-
-- Alternative one
-- Alternative two
-- Alternative three
-
-## Decisions
-
-- Decision one
-- Decision two
-
-## Unresolved Concerns
-
-- Concern one
-- Concern two
-
-## Follow-Ups
-
-- Follow-up one
-- Follow-up two
-```
-
 - [ ] **Step 3: Create public session template**
 
-Create `repo-skeleton/templates/public-session.md` with this content:
+Create `repo-skeleton/sessions/YYMMDD-topic-session-template.md` with this content:
 
 ```markdown
-# Public Session: Short Title
+---
+date: YYMMDD
+topic: short-topic
+agent:
+visibility: public
+---
 
-Date: YYMMDD
-Agent:
+# Public Session: Short Title
 
 ## Initial Intuition
 
@@ -704,14 +568,70 @@ context, credentials, account details, unnecessary personal information, and
 non-public business information are omitted.
 ```
 
-- [ ] **Step 4: Create decision template**
+- [ ] **Step 4: Create private session template inside sessions**
 
-Create `repo-skeleton/templates/decision.md` with this content:
+Create `repo-skeleton/sessions/YYMMDD-topic-private-session-template.md` with this content:
 
 ```markdown
-# Decision: Short Title
+---
+date: YYMMDD
+topic: short-topic
+agent:
+visibility: private
+intended_path: private/YYMMDD-topic-private-session.md
+---
 
-Date: YYMMDD
+# Private Session: Short Title
+
+Copy this template into ignored `private/` before using it for a real private
+session note. Do not commit filled private session notes.
+
+## User Goal
+
+Record the user's goal for this session.
+
+## Cleaned Private Context
+
+Keep useful private context after removing irrelevant turns and sensitive
+material that should not be retained.
+
+## Session Summary
+
+Summarize the useful reasoning and exploration.
+
+## Alternatives Considered
+
+- Alternative one
+- Alternative two
+- Alternative three
+
+## Decisions
+
+- Decision one
+- Decision two
+
+## Unresolved Concerns
+
+- Concern one
+- Concern two
+
+## Follow-Ups
+
+- Follow-up one
+- Follow-up two
+```
+
+- [ ] **Step 5: Create decision template**
+
+Create `repo-skeleton/decisions/YYMMDD-decision-template.md` with this content:
+
+```markdown
+---
+date: YYMMDD
+status: active
+---
+
+# Decision: Short Title
 
 ## Decision
 
@@ -742,19 +662,21 @@ Explain why this option was chosen.
 - Superseded by:
 ```
 
-- [ ] **Step 5: Create spec template**
+- [ ] **Step 6: Create design spec template**
 
-Create `repo-skeleton/templates/spec.md` with this content:
+Create `repo-skeleton/specs/YYMMDD-feature-design-template.md` with this content:
 
 ```markdown
-# Spec: Short Title
+---
+date: YYMMDD
+status: draft
+---
 
-Date: YYMMDD
-Status: Draft
+# Feature Design: Short Title
 
 ## Goal
 
-State what this spec is trying to achieve.
+State what this design is trying to achieve.
 
 ## Context
 
@@ -784,14 +706,17 @@ Describe the intended structure, behavior, and interfaces.
 Record constraints, sequencing notes, and verification expectations.
 ```
 
-- [ ] **Step 6: Create research template**
+- [ ] **Step 7: Create research template**
 
-Create `repo-skeleton/templates/research.md` with this content:
+Create `repo-skeleton/research/YYMMDD-research-template.md` with this content:
 
 ```markdown
-# Research: Short Title
+---
+date: YYMMDD
+status: draft
+---
 
-Date: YYMMDD
+# Research: Short Title
 
 ## Question
 
@@ -817,26 +742,37 @@ Explain what the findings change about the project.
 - Follow-up two
 ```
 
-- [ ] **Step 7: Verify templates**
+- [ ] **Step 8: Verify in-place templates**
 
 Run:
 
 ```bash
-find repo-skeleton/templates -type f -name '*.md' -print | sort
+find repo-skeleton -path repo-skeleton/private -prune -o -type f -name '*template.md' -print | sort
 ```
 
 Expected output:
 
 ```text
-repo-skeleton/templates/decision.md
-repo-skeleton/templates/idea.md
-repo-skeleton/templates/private-session.md
-repo-skeleton/templates/public-session.md
-repo-skeleton/templates/research.md
-repo-skeleton/templates/spec.md
+repo-skeleton/decisions/YYMMDD-decision-template.md
+repo-skeleton/docs/current-feature-doc-template.md
+repo-skeleton/ideas/YYMMDD-idea-template.md
+repo-skeleton/research/YYMMDD-research-template.md
+repo-skeleton/sessions/YYMMDD-topic-private-session-template.md
+repo-skeleton/sessions/YYMMDD-topic-session-template.md
+repo-skeleton/specs/YYMMDD-feature-design-template.md
 ```
 
-- [ ] **Step 8: Verify formatting**
+- [ ] **Step 9: Verify no separate templates directory exists**
+
+Run:
+
+```bash
+test ! -e repo-skeleton/templates
+```
+
+Expected: command exits 0.
+
+- [ ] **Step 10: Verify formatting**
 
 Run:
 
@@ -846,18 +782,18 @@ git diff --check
 
 Expected: no output.
 
-- [ ] **Step 9: Commit**
+- [ ] **Step 11: Commit**
 
 Run:
 
 ```bash
-git add repo-skeleton/templates/idea.md repo-skeleton/templates/private-session.md repo-skeleton/templates/public-session.md repo-skeleton/templates/decision.md repo-skeleton/templates/spec.md repo-skeleton/templates/research.md
-git commit -m "Add skeleton Markdown templates"
+git add repo-skeleton/docs/current-feature-doc-template.md repo-skeleton/ideas/YYMMDD-idea-template.md repo-skeleton/sessions/YYMMDD-topic-session-template.md repo-skeleton/sessions/YYMMDD-topic-private-session-template.md repo-skeleton/decisions/YYMMDD-decision-template.md repo-skeleton/specs/YYMMDD-feature-design-template.md repo-skeleton/research/YYMMDD-research-template.md
+git commit -m "Add in-place skeleton templates"
 ```
 
-Expected: commit succeeds and includes the six template files.
+Expected: commit succeeds and includes the seven in-place template files.
 
-### Task 6: Final Verification
+### Task 5: Final Verification
 
 **Files:**
 - Verify: `.gitignore`
@@ -938,4 +874,4 @@ git log --oneline --decorate --max-count=8
 ```
 
 Expected: recent commits show the implementation commits for outer docs,
-agent rules, template docs, folder guides, and templates.
+agent rules, template docs, and in-place templates.
