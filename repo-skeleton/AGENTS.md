@@ -46,6 +46,9 @@ In decision notes, include a `## Links` section only when there are real
 relationships to record. If present, include only non-empty relationship bullets
 such as `Supersedes:` or `Superseded by:`.
 
+Keep decision notes brief. Capture the decision, necessary context, options,
+rationale, and consequences without preserving the full discussion transcript.
+
 ## Private Workspace Rules
 
 - `private/` is never committed.
