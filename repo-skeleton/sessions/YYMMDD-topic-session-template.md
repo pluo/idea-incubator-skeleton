@@ -1,8 +1,8 @@
 ---
-date: YYMMDD
-topic: short-topic
+description: Brief public-safe summary of the session
+created: YYYY-MM-DD
 agent:
-visibility: public
+model:
 ---
 
 # Public Session: Short Title

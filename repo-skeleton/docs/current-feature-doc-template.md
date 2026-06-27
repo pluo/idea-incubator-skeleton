@@ -1,6 +1,7 @@
 ---
-title: Current Feature Documentation
-status: current
+description: Current feature documentation
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 ---
 
 # Current Feature Documentation

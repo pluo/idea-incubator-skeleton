@@ -1,6 +1,6 @@
 ---
-date: YYMMDD
-status: draft
+description: Brief description of the idea
+created: YYYY-MM-DD
 ---
 
 # Idea: Short Title

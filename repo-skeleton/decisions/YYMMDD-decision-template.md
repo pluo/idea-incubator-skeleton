@@ -1,6 +1,6 @@
 ---
-date: YYMMDD
-status: active
+description: Brief description of the decision
+created: YYYY-MM-DD
 ---
 
 # Decision: Short Title

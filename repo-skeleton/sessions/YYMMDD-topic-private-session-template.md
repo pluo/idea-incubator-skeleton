@@ -1,9 +1,8 @@
 ---
-date: YYMMDD
-topic: short-topic
+description: Brief private session summary
+created: YYYY-MM-DD
 agent:
-visibility: private
-intended_path: private/YYMMDD-topic-private-session.md
+model:
 ---
 
 # Private Session: Short Title

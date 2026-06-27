@@ -1,6 +1,6 @@
 ---
-date: YYMMDD
-status: draft
+description: Brief description of the feature design
+created: YYYY-MM-DD
 ---
 
 # Feature Design: Short Title

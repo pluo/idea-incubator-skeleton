@@ -1,6 +1,6 @@
 ---
-date: YYMMDD
-status: draft
+description: Brief description of the research note
+created: YYYY-MM-DD
 ---
 
 # Research: Short Title
