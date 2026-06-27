@@ -1,5 +1,5 @@
 ---
-description: Current feature documentation
+description: Template for current documentation that explains project behavior, workflow, or architecture.
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---

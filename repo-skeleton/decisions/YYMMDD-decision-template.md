@@ -1,5 +1,5 @@
 ---
-description: Brief description of the decision
+description: Template for decision records capturing context, options, rationale, and consequences.
 created: YYYY-MM-DD
 ---
 

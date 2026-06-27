@@ -1,5 +1,5 @@
 ---
-description: Brief description of the research note
+description: Template for research notes capturing questions, findings, implications, and follow-ups.
 created: YYYY-MM-DD
 ---
 

@@ -36,6 +36,10 @@ confused with real historical records. Historical project notes inside `ideas/`,
 `sessions/`, `decisions/`, `specs/`, `research/`, and `private/` use `YYMMDD-`
 prefixes.
 
+In YAML frontmatter, `description` is not the title. The Markdown H1 is the
+title. Keep `description` to 20 words or fewer and use it to summarize what the
+document is.
+
 ## Private Workspace Rules
 
 - `private/` is never committed.

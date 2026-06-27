@@ -1,5 +1,5 @@
 ---
-description: Brief private session summary
+description: Template for private AI session notes kept outside public Git history.
 created: YYYY-MM-DD
 agent:
 model:

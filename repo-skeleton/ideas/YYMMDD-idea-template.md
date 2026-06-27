@@ -1,5 +1,5 @@
 ---
-description: Brief description of the idea
+description: Template for public-safe idea notes capturing intuition, context, directions, and open questions.
 created: YYYY-MM-DD
 ---
 

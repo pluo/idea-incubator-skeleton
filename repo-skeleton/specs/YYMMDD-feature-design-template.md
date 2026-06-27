@@ -1,5 +1,5 @@
 ---
-description: Brief description of the feature design
+description: Template for dated design specs and implementation plans.
 created: YYYY-MM-DD
 ---
 
