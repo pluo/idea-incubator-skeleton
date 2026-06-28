@@ -176,7 +176,9 @@ one. Public session notes are curated Markdown summaries, not raw transcript
 dumps.
 
 Session filenames should not include the agent identity. Record the agent or
-tool identity in YAML frontmatter inside the Markdown file instead.
+tool identity in YAML frontmatter inside the Markdown file instead. Public
+session frontmatter should omit `model`; private session frontmatter may keep
+`model` and `permalink`.
 
 Public session notes should preserve:
 

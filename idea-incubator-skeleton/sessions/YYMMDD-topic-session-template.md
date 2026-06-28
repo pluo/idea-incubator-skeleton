@@ -2,7 +2,6 @@
 description: Template for public AI session summaries capturing context, decisions, tradeoffs, and next steps.
 created: YYYY-MM-DD
 agent:
-model:
 ---
 
 # Public Session: Short Title

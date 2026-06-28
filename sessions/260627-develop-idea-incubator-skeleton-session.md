@@ -2,7 +2,6 @@
 description: Public session summary for developing the idea-incubator-skeleton project.
 created: 2026-06-27
 agent: Codex
-model: GPT-5
 ---
 
 # Public Session: Developing idea-incubator-skeleton

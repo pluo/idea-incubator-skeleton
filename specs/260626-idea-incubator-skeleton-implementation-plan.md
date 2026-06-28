@@ -258,6 +258,8 @@ such as `Supersedes:` or `Superseded by:`.
 - Public session notes are curated summaries, not raw transcript dumps.
 - Session filenames do not include the agent identity. Record the agent or tool
   identity in YAML frontmatter inside the Markdown file.
+- Public session YAML frontmatter should include only `description`, `created`,
+  and `agent`. Do not include `model` in public session notes.
 - Public notes should preserve the initial intuition, useful context,
   alternatives considered, decision points, selected direction, tradeoffs,
   resulting artifacts, and next steps.
@@ -554,7 +556,6 @@ Create `idea-incubator-skeleton/sessions/YYMMDD-topic-session-template.md` with 
 description: Template for public AI session summaries capturing context, decisions, tradeoffs, and next steps.
 created: YYYY-MM-DD
 agent:
-model:
 ---
 
 # Public Session: Short Title
@@ -609,6 +610,7 @@ description: Template for private AI session notes kept outside public Git histo
 created: YYYY-MM-DD
 agent:
 model:
+permalink:
 ---
 
 # Private Session: Short Title
