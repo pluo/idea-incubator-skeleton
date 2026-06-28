@@ -3,7 +3,7 @@ description: Template for private AI session notes kept outside public Git histo
 created: YYYY-MM-DD
 agent:
 model:
-permalink:
+permalink: codex://thread/<session-id>
 ---
 
 # Private Session: Short Title

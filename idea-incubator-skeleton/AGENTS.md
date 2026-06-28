@@ -58,8 +58,9 @@ likely to change.
 - Agents may create private Markdown session notes automatically under
   `private/` using `YYMMDD-topic-private-session.md` filenames.
 - Private session YAML frontmatter should include only `description`, `created`,
-  `agent`, `model`, and `permalink`. Use `permalink` for the stable agent
-  context or origin, such as `Codex` or `ChatGPT`.
+  `agent`, `model`, and `permalink`. Use `permalink` for a URL-like stable
+  session link that includes the agent session or thread id, such as
+  `codex://thread/<session-id>` or a ChatGPT conversation URL.
 - Private session notes should be reflective records written to the user, from
   the user's perspective. Use "I" for the user in private notes; do not use
   "the user" to refer to the owner except in quoted text. Reserve "the user"
