@@ -23,6 +23,7 @@ A bare name creates the project under `~/repos/`, so the command above creates
 ```sh
 python3 scripts/new-idea-incubator.py ~/Documents/Codex/my-new-idea
 python3 scripts/new-idea-incubator.py /absolute/path/to/my-new-idea
+python3 scripts/new-idea-incubator.py relative/path/to/my-new-idea
 ```
 
 The installer copies `idea-incubator-skeleton/`, preserves symlinks, initializes

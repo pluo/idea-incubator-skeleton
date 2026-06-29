@@ -2,6 +2,8 @@
 """Create a new idea incubator project from the bundled skeleton."""
 
 import argparse
+import os
+import shlex
 import shutil
 import subprocess
 import sys
@@ -9,6 +11,12 @@ from pathlib import Path
 
 
 INITIAL_COMMIT_MESSAGE = "Initialize idea incubator project"
+GIT_IDENTITY_ENV_VARS = (
+    "GIT_AUTHOR_NAME",
+    "GIT_AUTHOR_EMAIL",
+    "GIT_COMMITTER_NAME",
+    "GIT_COMMITTER_EMAIL",
+)
 
 
 def repo_root() -> Path:
@@ -51,6 +59,62 @@ def ensure_git_available() -> None:
         raise SystemExit("git executable not found on PATH.")
 
 
+def format_git_failure(command: list[str], output: str | None = None) -> str:
+    message = f"Git command failed: {shlex.join(command)}"
+    if output:
+        message = f"{message}: {output.strip()}"
+    return message
+
+
+def run_git(
+    args: list[str],
+    cwd: Path | None = None,
+    check: bool = True,
+) -> subprocess.CompletedProcess[str]:
+    command = ["git", *args]
+    try:
+        return subprocess.run(
+            command,
+            cwd=cwd,
+            text=True,
+            capture_output=True,
+            check=check,
+        )
+    except subprocess.CalledProcessError as error:
+        output = error.stderr or error.stdout
+        raise SystemExit(format_git_failure(command, output)) from None
+
+
+def git_global_config_value(name: str) -> str:
+    result = run_git(["config", "--global", "--get", name], check=False)
+    if result.returncode == 0:
+        return result.stdout.strip()
+    if result.returncode == 1:
+        return ""
+
+    output = result.stderr or result.stdout
+    raise SystemExit(format_git_failure(["git", "config", "--global", "--get", name], output))
+
+
+def has_complete_env_git_identity() -> bool:
+    return all(os.environ.get(name, "").strip() for name in GIT_IDENTITY_ENV_VARS)
+
+
+def ensure_git_identity_configured() -> None:
+    if has_complete_env_git_identity():
+        return
+
+    if git_global_config_value("user.name") and git_global_config_value("user.email"):
+        return
+
+    raise SystemExit(
+        "Git commit identity is not configured. "
+        'Run `git config --global user.name "Your Name"` and '
+        "`git config --global user.email you@example.com`, or set all four "
+        "Git author/committer environment variables."
+    )
+
+
 def copy_skeleton(source: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(
@@ -65,13 +129,13 @@ def initialize_git(destination: Path) -> None:
     ensure_git_available()
 
     commands = [
-        ["git", "init", "-b", "main"],
-        ["git", "add", "."],
-        ["git", "commit", "-m", INITIAL_COMMIT_MESSAGE],
+        ["init", "-b", "main"],
+        ["add", "."],
+        ["commit", "-m", INITIAL_COMMIT_MESSAGE],
     ]
 
     for command in commands:
-        subprocess.run(command, cwd=destination, check=True)
+        run_git(command, cwd=destination)
 
 
 def install(destination_arg: str) -> Path:
@@ -81,6 +145,7 @@ def install(destination_arg: str) -> Path:
     ensure_source_available(source)
     ensure_destination_available(destination)
     ensure_git_available()
+    ensure_git_identity_configured()
     copy_skeleton(source, destination)
     initialize_git(destination)
 
