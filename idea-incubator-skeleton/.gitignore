@@ -1,3 +1,20 @@
-# Local private workspace; keep untracked even when it is a symlink
+## s1: deny everything, then re-allow all (except a few) directories for Git to descend into
+*
+!**/
+
+## s2: then re-allow wanted files at any depth
+!.gitignore
+!.clauderc
+!*.md
+!*.base
+!*.txt
+!*.json
+!*.sh
+!*.plist
+!*.py
+!*.js
+!*.ts
+
+## s3. then re-deny unwanted files that were allowed too loosely in s2
 private
 private/**
