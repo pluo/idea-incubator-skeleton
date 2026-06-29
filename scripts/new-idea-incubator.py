@@ -46,6 +46,11 @@ def ensure_destination_available(destination: Path) -> None:
         raise SystemExit(f"Destination already exists: {destination}")
 
 
+def ensure_git_available() -> None:
+    if shutil.which("git") is None:
+        raise SystemExit("git executable not found on PATH.")
+
+
 def copy_skeleton(source: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(
@@ -57,8 +62,7 @@ def copy_skeleton(source: Path, destination: Path) -> None:
 
 
 def initialize_git(destination: Path) -> None:
-    if shutil.which("git") is None:
-        raise SystemExit("git executable not found on PATH.")
+    ensure_git_available()
 
     commands = [
         ["git", "init", "-b", "main"],
@@ -76,6 +80,7 @@ def install(destination_arg: str) -> Path:
 
     ensure_source_available(source)
     ensure_destination_available(destination)
+    ensure_git_available()
     copy_skeleton(source, destination)
     initialize_git(destination)
 

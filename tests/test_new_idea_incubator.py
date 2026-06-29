@@ -88,6 +88,21 @@ class InstallerHelperTests(unittest.TestCase):
         self.assertEqual([call.kwargs["cwd"] for call in run.call_args_list], [destination] * 3)
         self.assertTrue(all(call.kwargs["check"] for call in run.call_args_list))
 
+    def test_install_checks_git_before_copying_skeleton(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            source = tmp_path / "source"
+            destination = tmp_path / "destination"
+            source.mkdir()
+            (source / "README.md").write_text("# Example\n", encoding="utf-8")
+
+            with mock.patch.object(self.installer, "skeleton_source", return_value=source), \
+                 mock.patch.object(self.installer.shutil, "which", return_value=None):
+                with self.assertRaisesRegex(SystemExit, "git executable not found"):
+                    self.installer.install(str(destination))
+
+            self.assertFalse(destination.exists())
+
 
 class InstallerEndToEndTests(unittest.TestCase):
     def test_installs_temp_project_with_clean_git_history(self):
