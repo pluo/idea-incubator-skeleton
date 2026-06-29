@@ -100,9 +100,19 @@ def has_complete_env_git_identity() -> bool:
     return all(os.environ.get(name, "").strip() for name in GIT_IDENTITY_ENV_VARS)
 
 
+def has_any_env_git_identity() -> bool:
+    return any(name in os.environ for name in GIT_IDENTITY_ENV_VARS)
+
+
 def ensure_git_identity_configured() -> None:
-    if has_complete_env_git_identity():
-        return
+    if has_any_env_git_identity():
+        if has_complete_env_git_identity():
+            return
+        raise SystemExit(
+            "Git commit identity environment is incomplete. "
+            "Set all four Git author/committer environment variables to "
+            "non-empty values, or unset them to use global Git config."
+        )
 
     if git_global_config_value("user.name") and git_global_config_value("user.email"):
         return

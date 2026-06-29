@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 import importlib.util
 import os
 import subprocess
@@ -16,6 +17,15 @@ GIT_IDENTITY_ENV = {
     "GIT_COMMITTER_EMAIL": "idea-installer-test@example.invalid",
 }
 EMPTY_GIT_IDENTITY_ENV = {key: "" for key in GIT_IDENTITY_ENV}
+
+
+@contextmanager
+def git_identity_env(values):
+    with mock.patch.dict(os.environ, {}, clear=False):
+        for key in GIT_IDENTITY_ENV:
+            os.environ.pop(key, None)
+        os.environ.update(values)
+        yield
 
 
 def load_installer_module():
@@ -130,9 +140,53 @@ class InstallerHelperTests(unittest.TestCase):
                 stderr="",
             )
 
-        with mock.patch.dict(os.environ, EMPTY_GIT_IDENTITY_ENV, clear=False), \
+        with git_identity_env({}), \
              mock.patch.object(self.installer.subprocess, "run", side_effect=git_config):
             self.installer.ensure_git_identity_configured()
+
+    def test_install_rejects_blank_or_partial_git_identity_env_before_copying(self):
+        def git_config_present(command, **kwargs):
+            values = {
+                "user.name": "Global User",
+                "user.email": "global-user@example.invalid",
+            }
+            if command[:4] == ["git", "config", "--global", "--get"]:
+                return subprocess.CompletedProcess(
+                    command,
+                    0,
+                    stdout=f"{values[command[-1]]}\n",
+                    stderr="",
+                )
+            return subprocess.CompletedProcess(command, 0, stdout="", stderr="")
+
+        identity_cases = {
+            "blank": EMPTY_GIT_IDENTITY_ENV,
+            "partial": {"GIT_AUTHOR_NAME": "Idea Installer Test"},
+        }
+
+        for name, identity_env in identity_cases.items():
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as tmp:
+                tmp_path = Path(tmp)
+                source = tmp_path / "source"
+                destination = tmp_path / "destination"
+                source.mkdir()
+                (source / "README.md").write_text("# Example\n", encoding="utf-8")
+
+                with mock.patch.object(self.installer, "skeleton_source", return_value=source), \
+                     mock.patch.object(self.installer.shutil, "which", return_value="/usr/bin/git"), \
+                     git_identity_env(identity_env), \
+                     mock.patch.object(
+                         self.installer.subprocess,
+                         "run",
+                         side_effect=git_config_present,
+                     ):
+                    with self.assertRaisesRegex(
+                        SystemExit,
+                        "Git commit identity environment is incomplete",
+                    ):
+                        self.installer.install(str(destination))
+
+                self.assertFalse(destination.exists())
 
     def test_install_rejects_missing_git_identity_before_copying_skeleton(self):
         def git_config_missing(command, **kwargs):
@@ -147,7 +201,7 @@ class InstallerHelperTests(unittest.TestCase):
 
             with mock.patch.object(self.installer, "skeleton_source", return_value=source), \
                  mock.patch.object(self.installer.shutil, "which", return_value="/usr/bin/git"), \
-                 mock.patch.dict(os.environ, EMPTY_GIT_IDENTITY_ENV, clear=False), \
+                 git_identity_env({}), \
                  mock.patch.object(
                      self.installer.subprocess,
                      "run",
@@ -224,6 +278,28 @@ class InstallerEndToEndTests(unittest.TestCase):
                 check=True,
             ).stdout.strip()
             self.assertEqual(status, "")
+
+    def test_installer_uses_bundled_skeleton_from_different_cwd(self):
+        if not SCRIPT_PATH.exists():
+            self.skipTest("installer script does not exist yet")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            working_dir = tmp_path / "different-cwd"
+            destination = tmp_path / "installed-project"
+            working_dir.mkdir()
+            env = os.environ.copy()
+            env.update(GIT_IDENTITY_ENV)
+
+            subprocess.run(
+                ["python3", str(SCRIPT_PATH), str(destination)],
+                cwd=working_dir,
+                env=env,
+                check=True,
+            )
+
+            self.assertTrue((destination / "README.md").is_file())
+            self.assertTrue((destination / "AGENTS.md").is_file())
 
 
 if __name__ == "__main__":
