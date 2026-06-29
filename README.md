@@ -10,13 +10,37 @@ of Git history.
 
 ## Intended Use
 
-Use `idea-incubator-skeleton/` as a copyable template directory:
+Use `scripts/new-idea-incubator.py` to create a new local idea project and
+initialize Git immediately:
+
+```sh
+python3 scripts/new-idea-incubator.py my-new-idea
+```
+
+A bare name creates the project under `~/repos/`, so the command above creates
+`~/repos/my-new-idea`. To use a different destination, pass an explicit path:
+
+```sh
+python3 scripts/new-idea-incubator.py ~/Documents/Codex/my-new-idea
+python3 scripts/new-idea-incubator.py /absolute/path/to/my-new-idea
+```
+
+The installer copies `idea-incubator-skeleton/`, preserves symlinks, initializes
+Git on `main`, stages the copied skeleton, and commits it with:
+
+```text
+Initialize idea incubator project
+```
+
+The script leaves copied content generic. After installation, update the new
+project's README and notes when the project identity is clear.
+
+The skeleton can also be copied manually:
 
 ```sh
 cp -R idea-incubator-skeleton/. /path/to/new-project/
 ```
 
-After copying, initialize or continue Git in the destination project as needed.
 The copied project should be publishable with its Git history intact, because
 private notes are kept in an ignored `private/` attachment point.
 
