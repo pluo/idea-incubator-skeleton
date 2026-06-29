@@ -1,6 +1,6 @@
 ---
 description: Public session summary for designing and shipping the idea-incubator installer.
-created: 2026-06-29
+created: 2026-06-28
 agent: Codex
 ---
 
@@ -97,8 +97,8 @@ a prompt or from a purely mechanical workflow.
 
 ## Resulting Artifacts
 
-- `specs/260629-idea-incubator-installer-design.md`
-- `specs/260629-idea-incubator-installer-implementation-plan.md`
+- `specs/260628-idea-incubator-installer-design.md`
+- `specs/260628-idea-incubator-installer-implementation-plan.md`
 - `scripts/new-idea-incubator.py`
 - `tests/test_new_idea_incubator.py`
 - Updated installer usage in `README.md`

@@ -38,6 +38,11 @@ confused with real historical records. Historical project notes inside `ideas/`,
 Decision records are the exception: use ordered numeric prefixes such as `001-`,
 `002-`, and `003-`.
 
+Use the user's local timezone when deriving `YYMMDD-` filename prefixes and
+`created` dates. Do not use UTC rollover for dated notes. If the local date is
+ambiguous or conflicts with system metadata, verify it with `date` before
+creating or renaming dated files.
+
 In YAML frontmatter, `description` is not the title. The Markdown H1 is the
 title. Keep `description` to 20 words or fewer and use it to summarize what the
 document is.
